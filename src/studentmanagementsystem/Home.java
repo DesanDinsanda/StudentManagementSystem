@@ -4,6 +4,8 @@
  */
 package studentmanagementsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
@@ -581,6 +583,11 @@ public class Home extends javax.swing.JFrame {
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Logout");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -965,6 +972,11 @@ public class Home extends javax.swing.JFrame {
         jButton14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton14.setForeground(new java.awt.Color(255, 255, 255));
         jButton14.setText("Logout");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -1419,6 +1431,11 @@ public class Home extends javax.swing.JFrame {
         jButton21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton21.setForeground(new java.awt.Color(255, 255, 255));
         jButton21.setText("Logout");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -2022,6 +2039,11 @@ public class Home extends javax.swing.JFrame {
         jButton28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton28.setForeground(new java.awt.Color(255, 255, 255));
         jButton28.setText("Logout");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -2387,6 +2409,11 @@ public class Home extends javax.swing.JFrame {
         jButton36.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton36.setForeground(new java.awt.Color(255, 255, 255));
         jButton36.setText("Logout");
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
@@ -2790,6 +2817,46 @@ public class Home extends javax.swing.JFrame {
     private void jComboBox22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox22ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox22ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        int a = JOptionPane.showConfirmDialog(this, "Log out now ?", "Confirm the logout", JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            this.dispose();
+            new LoginPage().setVisible(true);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        int a = JOptionPane.showConfirmDialog(this, "Log out now ?", "Confirm the logout", JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            this.dispose();
+            new LoginPage().setVisible(true);
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        int a = JOptionPane.showConfirmDialog(this, "Log out now ?", "Confirm the logout", JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            this.dispose();
+            new LoginPage().setVisible(true);
+        }
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        int a = JOptionPane.showConfirmDialog(this, "Log out now ?", "Confirm the logout", JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            this.dispose();
+            new LoginPage().setVisible(true);
+        }
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        int a = JOptionPane.showConfirmDialog(this, "Log out now ?", "Confirm the logout", JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            this.dispose();
+            new LoginPage().setVisible(true);
+        }
+    }//GEN-LAST:event_jButton36ActionPerformed
 
     /**
      * @param args the command line arguments
