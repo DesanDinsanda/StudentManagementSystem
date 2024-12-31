@@ -4,8 +4,12 @@
  */
 package studentmanagementsystem;
 
+import com.mysql.cj.jdbc.PreparedStatementWrapper;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.*;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class Home extends javax.swing.JFrame {
 
     private DefaultTableModel model;
+    private int rowIndex;
     /**
      * Creates new form Home
      */
@@ -35,6 +40,7 @@ public class Home extends javax.swing.JFrame {
     }
     
     private void tableViewStudent(){
+        getStudentValue(jtblStudent);
         model = (DefaultTableModel) jtblStudent.getModel();
         jtblStudent.setRowHeight(30);
         jtblStudent.setShowGrid(true);
@@ -100,6 +106,41 @@ public class Home extends javax.swing.JFrame {
         return true;
             
     }
+    
+    //get all the data from student table
+    public void getStudentValue(JTable table){
+        String sql = "SELECT * FROM student";
+        try {
+            Connection con = SingletonConnection.getInstance().getConnection();
+    
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Object[] row;
+            
+            while(rs.next()){
+            row = new Object[11];
+            row[0] = rs.getString(1);
+            row[1] = rs.getString(2);
+            row[2] = rs.getString(3);
+            row[3] = rs.getString(4);
+            row[4] = rs.getInt(5);
+            row[5] = rs.getString(6);
+            row[6] = rs.getString(7);
+            row[7] = rs.getString(8);
+            row[8] = rs.getString(9);
+            row[9] = rs.getString(10);
+            row[10] = rs.getString(11);
+            model.addRow(row);
+            
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -624,6 +665,11 @@ public class Home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtblStudent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtblStudentMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtblStudent);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -654,6 +700,11 @@ public class Home extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Update");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(96, 108, 56));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -2955,6 +3006,53 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if(isEmptyStudent()){
+            String stdId = txtSid.getText();
+            String fName = txtFname.getText();
+            String lName = txtLname.getText();
+            String email = txtEmail.getText();
+            int age = Integer.parseInt(txtAge.getText());
+            String address = txtAddress.getText();
+            String title = cmbTitle.getSelectedItem().toString();
+            String programme = cmbProgramme.getSelectedItem().toString();
+            String branch = cmbBranch.getSelectedItem().toString();
+            String mobile = txtMobile.getText();
+            String pName = txtPname.getText();
+            
+            //Add data to student table
+            try {
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "INSERT INTO student values(?,?,?,?,?,?,?,?,?,?,?) ";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, stdId);
+                ps.setString(2, fName);
+                ps.setString(3, lName);
+                ps.setString(4, email);
+                ps.setInt(5, age);
+                ps.setString(6, address);
+                ps.setString(7, title);
+                ps.setString(8, programme);
+                ps.setString(9, branch);
+                ps.setString(10, mobile);
+                ps.setString(11, pName);
+                
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "new student added sucesfully");
+                    jtblStudent.setModel(new DefaultTableModel(null, new Object[] {"Student ID","First name","Last name","email","Age","Address","Title","Programme","Branch","Mobile","Parent name"}));
+                    getStudentValue(jtblStudent);
+                    clearStudent();
+                
+                }
+                
+                
+            } catch (SQLException s) {
+                JOptionPane.showMessageDialog(null, s);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+            
+            
+            
+            
         
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -2964,6 +3062,28 @@ public class Home extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtMobileKeyTyped
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(isEmptyStudent()){
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jtblStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblStudentMouseClicked
+        model = (DefaultTableModel) jtblStudent.getModel();
+        rowIndex = jtblStudent.getSelectedRow();
+        
+        txtSid.setText(jtblStudent.getValueAt(rowIndex, 0).toString());
+        txtFname.setText(jtblStudent.getValueAt(rowIndex, 1).toString());
+        txtLname.setText(jtblStudent.getValueAt(rowIndex, 2).toString());
+        txtEmail.setText(jtblStudent.getValueAt(rowIndex, 3).toString());
+        txtAge.setText(jtblStudent.getValueAt(rowIndex, 4).toString());
+        txtAddress.setText(jtblStudent.getValueAt(rowIndex, 5).toString());
+        cmbTitle.setSelectedItem(jtblStudent.getValueAt(rowIndex, 6).toString());
+        cmbProgramme.setSelectedItem(jtblStudent.getValueAt(rowIndex, 7).toString());
+        cmbBranch.setSelectedItem(jtblStudent.getValueAt(rowIndex, 8).toString());
+        txtMobile.setText(jtblStudent.getValueAt(rowIndex, 9).toString());
+        txtPname.setText(jtblStudent.getValueAt(rowIndex, 10).toString());
+    }//GEN-LAST:event_jtblStudentMouseClicked
 
     /**
      * @param args the command line arguments
