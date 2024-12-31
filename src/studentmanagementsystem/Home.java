@@ -38,7 +38,10 @@ public class Home extends javax.swing.JFrame {
     
     public void init(){
         tableViewStudent();
+        tableViewLecturer();
     }
+    
+    //Code star for Student--------------------------------------------------------------------------------------------------------
     
     private void tableViewStudent(){
         getStudentValue(jtblStudent);
@@ -174,6 +177,139 @@ public class Home extends javax.swing.JFrame {
     
     
     
+    
+    //codes start for lecturer-------------------------------------------------------------------------------------------------------------
+    
+    private void tableViewLecturer(){
+        getLecturerValues(jtblLecturer,"");
+        model = (DefaultTableModel) jtblLecturer.getModel();
+        jtblLecturer.setRowHeight(30);
+        jtblLecturer.setShowGrid(true);
+        jtblLecturer.setGridColor(Color.black);
+        jtblLecturer.setBackground(Color.white);
+        
+    }
+    
+    private void clearLecturer(){
+        txtLecId.setText(null);
+        txtLfName.setText(null);
+        txtLlName.setText(null);
+        txtLemail.setText(null);
+        txtLmobile.setText(null);
+        txtLaddress.setText(null);
+        txtLage.setText(null);
+        cmbLtitle.setSelectedIndex(0);
+        cmbLmodule.setSelectedIndex(0);
+        txtLqualification.setText(null);
+        cmbLbranch.setSelectedIndex(0);
+        jtblLecturer.clearSelection();
+    }
+    
+    public boolean isEmptyLecturer(){
+        if(txtLecId.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Lecturer ID can not be empty");
+        }
+        else if(txtLfName.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"First name can not be empty");
+        }
+        else if(txtLlName.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Last name can not be empty");
+        }
+        else if(txtLemail.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Email can not be empty");
+        }
+        
+        else if(txtLmobile.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Mobile can not be empty");
+        }
+        else if(txtLaddress.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Address number can not be empty");
+        }
+        
+        else if(txtLqualification.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Qualification can not be empty");
+        }else if(txtLage.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Age can not be empty");
+        }else  {
+        try {
+            int age = Integer.parseInt(txtLage.getText()); 
+            if (age < 0 || age > 120) {
+                JOptionPane.showMessageDialog(this, "Age must be between 0 and 120");
+        }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid number for age");
+        }
+        }
+       return true;
+            
+    }
+    
+    public void getLecturerValue(JTable table){
+        String sql = "SELECT * FROM lecturer";
+        try {
+            Connection con = SingletonConnection.getInstance().getConnection();
+    
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Object[] row;
+            
+            while(rs.next()){
+            row = new Object[11];
+            row[0] = rs.getString(1);
+            row[1] = rs.getString(2);
+            row[2] = rs.getString(3);
+            row[3] = rs.getString(4);
+            row[4] = rs.getInt(5);
+            row[5] = rs.getString(6);
+            row[6] = rs.getString(7);
+            row[7] = rs.getString(8);
+            row[8] = rs.getString(9);
+            row[9] = rs.getString(10);
+            row[10] = rs.getString(11);
+            model.addRow(row);
+            
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void getLecturerValues(JTable table,String searchValue){
+        String sql = "SELECT * FROM lecturer WHERE concat(lecturerID,firstName,lastName,email,mobile,address,age,title,module,qualification,branch) LIKE ? ";
+        try {
+            Connection con = SingletonConnection.getInstance().getConnection();
+    
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,"%" + searchValue + "%");
+            ResultSet rs = ps.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Object[] row;
+            
+            while(rs.next()){
+            row = new Object[11];
+            row[0] = rs.getString(1);
+            row[1] = rs.getString(2);
+            row[2] = rs.getString(3);
+            row[3] = rs.getString(4);
+            row[4] = rs.getInt(5);
+            row[5] = rs.getString(6);
+            row[6] = rs.getString(7);
+            row[7] = rs.getString(8);
+            row[8] = rs.getString(9);
+            row[9] = rs.getString(10);
+            row[10] = rs.getString(11);
+            model.addRow(row);
+            
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    // Lecturer code end-------------------------------------------------------------------------------------------------------------
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -233,21 +369,20 @@ public class Home extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField24 = new javax.swing.JTextField();
+        txtLfName = new javax.swing.JTextField();
+        txtLemail = new javax.swing.JTextField();
+        txtLmobile = new javax.swing.JTextField();
+        txtLlName = new javax.swing.JTextField();
+        txtLaddress = new javax.swing.JTextField();
+        cmbLtitle = new javax.swing.JComboBox<>();
+        txtLage = new javax.swing.JTextField();
         jLabel43 = new javax.swing.JLabel();
-        jTextField45 = new javax.swing.JTextField();
+        txtLqualification = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jComboBox10 = new javax.swing.JComboBox<>();
+        cmbLbranch = new javax.swing.JComboBox<>();
+        cmbLmodule = new javax.swing.JComboBox<>();
+        txtLecId = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -256,7 +391,7 @@ public class Home extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jtblLecturer = new javax.swing.JTable();
         jPanel14 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
@@ -890,34 +1025,33 @@ public class Home extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel25.setText("Module");
 
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        txtLfName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                txtLfNameActionPerformed(evt);
             }
         });
 
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+        txtLmobile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
+                txtLmobileActionPerformed(evt);
+            }
+        });
+        txtLmobile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLmobileKeyTyped(evt);
             }
         });
 
-        jTextField17.addActionListener(new java.awt.event.ActionListener() {
+        txtLlName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField17ActionPerformed(evt);
+                txtLlNameActionPerformed(evt);
             }
         });
 
-        jTextField21.addActionListener(new java.awt.event.ActionListener() {
+        cmbLtitle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mr", "Mrs", "Other" }));
+        cmbLtitle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField21ActionPerformed(evt);
-            }
-        });
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mr", "Mrs", "Other" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cmbLtitleActionPerformed(evt);
             }
         });
 
@@ -930,17 +1064,17 @@ public class Home extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel24.setText("Branch");
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Colombo", "Rajagiriya", "Kandy", "Kurunegala", "Galle", "Matara", "Kirulapone", "Kandy" }));
-        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+        cmbLbranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Colombo", "Rajagiriya", "Kandy", "Kurunegala", "Galle", "Matara", "Kirulapone", "Kandy" }));
+        cmbLbranch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox7ActionPerformed(evt);
+                cmbLbranchActionPerformed(evt);
             }
         });
 
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox10.addActionListener(new java.awt.event.ActionListener() {
+        cmbLmodule.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbLmodule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox10ActionPerformed(evt);
+                cmbLmoduleActionPerformed(evt);
             }
         });
 
@@ -954,7 +1088,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cmbLbranch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel10Layout.createSequentialGroup()
                             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -965,17 +1099,17 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(31, 31, 31)
                             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField22)
-                                .addComponent(jTextField12)
-                                .addComponent(jTextField11)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox10, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(txtLaddress)
+                                .addComponent(txtLmobile)
+                                .addComponent(txtLemail)
+                                .addComponent(cmbLtitle, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtLage, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbLmodule, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
-                                .addComponent(jTextField45, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtLqualification, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -984,67 +1118,63 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(jLabel44, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField17, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                    .addComponent(jTextField21, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                    .addComponent(jTextField9))))))
+                                    .addComponent(txtLlName, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                    .addComponent(txtLfName, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                    .addComponent(txtLecId))))))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel10Layout.createSequentialGroup()
-                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(78, 78, 78))
-                        .addGroup(jPanel10Layout.createSequentialGroup()
-                            .addComponent(jLabel44)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6))))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel44)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtLlName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtLecId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtLfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel18))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtLmobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbLtitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
-                    .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbLmodule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLqualification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel43))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmbLbranch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         jPanel11.setBackground(new java.awt.Color(221, 161, 94));
@@ -1107,7 +1237,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jtblLecturer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1123,9 +1253,14 @@ public class Home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(10).setHeaderValue("Branch");
+        jtblLecturer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtblLecturerMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jtblLecturer);
+        if (jtblLecturer.getColumnModel().getColumnCount() > 0) {
+            jtblLecturer.getColumnModel().getColumn(10).setHeaderValue("Branch");
         }
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -1146,6 +1281,11 @@ public class Home extends javax.swing.JFrame {
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Add");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setBackground(new java.awt.Color(96, 108, 56));
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1161,6 +1301,11 @@ public class Home extends javax.swing.JFrame {
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton13.setForeground(new java.awt.Color(255, 255, 255));
         jButton13.setText("Clear");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton14.setBackground(new java.awt.Color(96, 108, 56));
         jButton14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1192,14 +1337,14 @@ public class Home extends javax.swing.JFrame {
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -2760,25 +2905,21 @@ public class Home extends javax.swing.JFrame {
             
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void txtLfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLfNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_txtLfNameActionPerformed
 
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+    private void txtLmobileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLmobileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
+    }//GEN-LAST:event_txtLmobileActionPerformed
 
-    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
+    private void txtLlNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLlNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17ActionPerformed
+    }//GEN-LAST:event_txtLlNameActionPerformed
 
-    private void jTextField21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField21ActionPerformed
+    private void cmbLtitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLtitleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField21ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cmbLtitleActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
@@ -2832,17 +2973,17 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbBranchActionPerformed
 
-    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+    private void cmbLbranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLbranchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox7ActionPerformed
+    }//GEN-LAST:event_cmbLbranchActionPerformed
 
     private void jComboBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox9ActionPerformed
 
-    private void jComboBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox10ActionPerformed
+    private void cmbLmoduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLmoduleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox10ActionPerformed
+    }//GEN-LAST:event_cmbLmoduleActionPerformed
 
     private void jComboBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox11ActionPerformed
         // TODO add your handling code here:
@@ -3229,6 +3370,91 @@ public class Home extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton37ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if(isEmptyLecturer()){
+            String lecturerId = txtLecId.getText();
+            String fName = txtLfName.getText();
+            String lName = txtLlName.getText();
+            String email = txtLemail.getText();
+            String mobile = txtLmobile.getText();
+            String address = txtLaddress.getText();
+            int age = Integer.parseInt(txtLage.getText());
+            String title = cmbLtitle.getSelectedItem().toString();
+            String module = cmbLmodule.getSelectedItem().toString();
+            String qualification = txtLqualification.getText();
+            String branch = cmbLbranch.getSelectedItem().toString();
+            
+            
+            
+            //Add data to student table
+            try {
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "INSERT INTO lecturer values(?,?,?,?,?,?,?,?,?,?,?) ";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, lecturerId);
+                ps.setString(2, fName);
+                ps.setString(3, lName);
+                ps.setString(4, email);
+                ps.setString(5, mobile);
+                ps.setString(6, address);
+                ps.setInt(7, age);
+                ps.setString(8, title);
+                
+                ps.setString(9, module);
+                ps.setString(10, qualification);
+                ps.setString(11, branch);
+                
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "new lecturer added sucesfully");
+                    jtblLecturer.setModel(new DefaultTableModel(null, new Object[] {"Lecturer ID","First name","Last name","email","Mobile","Address","Age","Title","Module","Qualification","Branch"}));
+                    getLecturerValue(jtblLecturer);
+                    clearLecturer();
+                
+                }
+                
+                
+            } catch (SQLException s) {
+                JOptionPane.showMessageDialog(null, s);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+            
+            
+            
+            
+        
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        clearLecturer();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void txtLmobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLmobileKeyTyped
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtLmobileKeyTyped
+
+    private void jtblLecturerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblLecturerMouseClicked
+        model = (DefaultTableModel) jtblLecturer.getModel();
+        rowIndex = jtblLecturer.getSelectedRow();
+        
+        txtLecId.setText(jtblLecturer.getValueAt(rowIndex, 0).toString());
+        txtLfName.setText(jtblLecturer.getValueAt(rowIndex, 1).toString());
+        txtLlName.setText(jtblLecturer.getValueAt(rowIndex, 2).toString());
+        txtLemail.setText(jtblLecturer.getValueAt(rowIndex, 3).toString());
+        txtLmobile.setText(jtblLecturer.getValueAt(rowIndex, 4).toString());
+        txtLaddress.setText(jtblLecturer.getValueAt(rowIndex, 5).toString());
+        txtLage.setText(jtblLecturer.getValueAt(rowIndex, 6).toString());
+        cmbLtitle.setSelectedItem(jtblLecturer.getValueAt(rowIndex, 7).toString());
+        cmbLmodule.setSelectedItem(jtblLecturer.getValueAt(rowIndex, 8).toString());
+        txtLqualification.setText(jtblLecturer.getValueAt(rowIndex, 9).toString());
+        cmbLbranch.setSelectedItem(jtblLecturer.getValueAt(rowIndex, 10).toString());
+        
+        
+    }//GEN-LAST:event_jtblLecturerMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -3267,6 +3493,9 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbBranch;
+    private javax.swing.JComboBox<String> cmbLbranch;
+    private javax.swing.JComboBox<String> cmbLmodule;
+    private javax.swing.JComboBox<String> cmbLtitle;
     private javax.swing.JComboBox<String> cmbProgramme;
     private javax.swing.JComboBox<String> cmbTitle;
     private javax.swing.JButton jButton1;
@@ -3306,7 +3535,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox13;
     private javax.swing.JComboBox<String> jComboBox14;
@@ -3315,13 +3543,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox17;
     private javax.swing.JComboBox<String> jComboBox18;
     private javax.swing.JComboBox<String> jComboBox19;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox20;
     private javax.swing.JComboBox<String> jComboBox21;
     private javax.swing.JComboBox<String> jComboBox22;
     private javax.swing.JComboBox<String> jComboBox23;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
@@ -3430,20 +3656,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
@@ -3466,7 +3684,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField42;
     private javax.swing.JTextField jTextField43;
     private javax.swing.JTextField jTextField44;
-    private javax.swing.JTextField jTextField45;
     private javax.swing.JTextField jTextField46;
     private javax.swing.JTextField jTextField47;
     private javax.swing.JTextField jTextField48;
@@ -3484,13 +3701,21 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField60;
     private javax.swing.JTextField jTextField61;
     private javax.swing.JTextField jTextField62;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable jtblLecturer;
     private javax.swing.JTable jtblStudent;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFname;
+    private javax.swing.JTextField txtLaddress;
+    private javax.swing.JTextField txtLage;
+    private javax.swing.JTextField txtLecId;
+    private javax.swing.JTextField txtLemail;
+    private javax.swing.JTextField txtLfName;
+    private javax.swing.JTextField txtLlName;
+    private javax.swing.JTextField txtLmobile;
     private javax.swing.JTextField txtLname;
+    private javax.swing.JTextField txtLqualification;
     private javax.swing.JTextField txtMobile;
     private javax.swing.JTextField txtPname;
     private javax.swing.JTextField txtSearch;
