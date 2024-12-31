@@ -8,6 +8,7 @@ import com.mysql.cj.jdbc.PreparedStatementWrapper;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.*;
+import java.text.MessageFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -139,6 +140,38 @@ public class Home extends javax.swing.JFrame {
         }
     }
     
+    public void getStudentValues(JTable table,String searchValue){
+        String sql = "SELECT * FROM student WHERE concat(studentID,firstName,lastName,email,age,address,title,programme,branch,mobile,parentName) LIKE ? ";
+        try {
+            Connection con = SingletonConnection.getInstance().getConnection();
+    
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,"%" + searchValue + "%");
+            ResultSet rs = ps.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Object[] row;
+            
+            while(rs.next()){
+            row = new Object[11];
+            row[0] = rs.getString(1);
+            row[1] = rs.getString(2);
+            row[2] = rs.getString(3);
+            row[3] = rs.getString(4);
+            row[4] = rs.getInt(5);
+            row[5] = rs.getString(6);
+            row[6] = rs.getString(7);
+            row[7] = rs.getString(8);
+            row[8] = rs.getString(9);
+            row[9] = rs.getString(10);
+            row[10] = rs.getString(11);
+            model.addRow(row);
+            
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -177,7 +210,7 @@ public class Home extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
@@ -189,6 +222,7 @@ public class Home extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton37 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -598,9 +632,9 @@ public class Home extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Search Student");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtSearchActionPerformed(evt);
             }
         });
 
@@ -630,7 +664,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -643,7 +677,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -710,6 +744,11 @@ public class Home extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Delete");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(96, 108, 56));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -731,6 +770,16 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jButton37.setBackground(new java.awt.Color(96, 108, 56));
+        jButton37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton37.setForeground(new java.awt.Color(255, 255, 255));
+        jButton37.setText("Print");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -742,7 +791,9 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(34, 34, 34)
+                .addComponent(jButton37, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -757,7 +808,8 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton37, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -795,7 +847,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2688,16 +2740,24 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbTitleActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(txtSearch.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter a value");
+        }else{
+            jtblStudent.setModel(new DefaultTableModel(null, new Object[] {"Student ID","First name","Last name","email","Age","Address","Title","Programme","Branch","Mobile","Parent name"}));
+            getStudentValues(jtblStudent, txtSearch.getText());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        jtblStudent.setModel(new DefaultTableModel(null, new Object[] {"Student ID","First name","Last name","email","Age","Address","Title","Programme","Branch","Mobile","Parent name"}));
+            getStudentValue(jtblStudent);
+            txtSearch.setText(null);
+            
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
@@ -3065,6 +3125,49 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(isEmptyStudent()){
+            String stdId = txtSid.getText();
+            String fName = txtFname.getText();
+            String lName = txtLname.getText();
+            String email = txtEmail.getText();
+            int age = Integer.parseInt(txtAge.getText());
+            String address = txtAddress.getText();
+            String title = cmbTitle.getSelectedItem().toString();
+            String programme = cmbProgramme.getSelectedItem().toString();
+            String branch = cmbBranch.getSelectedItem().toString();
+            String mobile = txtMobile.getText();
+            String pName = txtPname.getText();
+            
+            try {
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "UPDATE student SET firstName=?, lastName=?, email=?, age=?, address=?, title=?, programme=?, branch=?, mobile=?, parentName=? WHERE studentID=?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                
+                ps.setString(1, fName);
+                ps.setString(2, lName);
+                ps.setString(3, email);
+                ps.setInt(4, age);
+                ps.setString(5, address);
+                ps.setString(6, title);
+                ps.setString(7, programme);
+                ps.setString(8, branch);
+                ps.setString(9, mobile);
+                ps.setString(10, pName);
+                ps.setString(11, stdId);
+                
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "student updated sucesfully");
+                    jtblStudent.setModel(new DefaultTableModel(null, new Object[] {"Student ID","First name","Last name","email","Age","Address","Title","Programme","Branch","Mobile","Parent name"}));
+                    getStudentValue(jtblStudent);
+                    clearStudent();
+                
+                }
+                
+                
+            } catch (SQLException s) {
+                JOptionPane.showMessageDialog(null, s);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -3084,6 +3187,47 @@ public class Home extends javax.swing.JFrame {
         txtMobile.setText(jtblStudent.getValueAt(rowIndex, 9).toString());
         txtPname.setText(jtblStudent.getValueAt(rowIndex, 10).toString());
     }//GEN-LAST:event_jtblStudentMouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        String stdId = txtSid.getText();
+        if(stdId.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please select a ID first");
+        }else{
+        int confirm = JOptionPane.showConfirmDialog(null, "Do you want to delete this student", "Conifrm student deletion", JOptionPane.OK_CANCEL_OPTION,0);
+        if(confirm == JOptionPane.OK_OPTION){
+            try {
+                
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "DELETE FROM student WHERE studentID = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, stdId);
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "student deleted sucesfully");
+                    jtblStudent.setModel(new DefaultTableModel(null, new Object[] {"Student ID","First name","Last name","email","Age","Address","Title","Programme","Branch","Mobile","Parent name"}));
+                    getStudentValue(jtblStudent);
+                    clearStudent();
+                
+                }
+            }catch (SQLException s){
+                JOptionPane.showMessageDialog(null, s);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        }
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        
+        try {
+            MessageFormat header = new MessageFormat("Student information");
+        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        jtblStudent.print(JTable.PrintMode.FIT_WIDTH,header,footer);
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_jButton37ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3155,6 +3299,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
+    private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -3289,7 +3434,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -3349,6 +3493,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField txtLname;
     private javax.swing.JTextField txtMobile;
     private javax.swing.JTextField txtPname;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSid;
     // End of variables declaration//GEN-END:variables
 }
