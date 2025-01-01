@@ -386,7 +386,7 @@ public class Home extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtLsearch = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
@@ -1186,9 +1186,9 @@ public class Home extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Search Lecturer");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtLsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtLsearchActionPerformed(evt);
             }
         });
 
@@ -1218,7 +1218,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtLsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1231,7 +1231,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8)
                     .addComponent(jButton9))
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -1291,11 +1291,21 @@ public class Home extends javax.swing.JFrame {
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("Update");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setBackground(new java.awt.Color(96, 108, 56));
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText("Delete");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setBackground(new java.awt.Color(96, 108, 56));
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -2921,16 +2931,23 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbLtitleActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtLsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLsearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtLsearchActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        if(txtLsearch.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter a value");
+        }else{
+            jtblLecturer.setModel(new DefaultTableModel(null, new Object[] {"Lecturer ID","First name","Last name","email","Mobile","Address","Age","Title","Module","Qualification","Branch"}));
+            getLecturerValues(jtblLecturer, txtLsearch.getText());
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        jtblLecturer.setModel(new DefaultTableModel(null, new Object[] {"Lecturer ID","First name","Last name","email","Mobile","Address","Age","Title","Module","Qualification","Branch"}));
+            getLecturerValue(jtblLecturer);
+            txtLsearch.setText(null);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jTextField26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField26ActionPerformed
@@ -3455,6 +3472,86 @@ public class Home extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jtblLecturerMouseClicked
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        String lecId = txtLecId.getText();
+        if(lecId.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please select a ID first");
+        }else{
+        int confirm = JOptionPane.showConfirmDialog(null, "Do you want to delete this lecturer", "Conifrm lecturer deletion", JOptionPane.OK_CANCEL_OPTION,0);
+        if(confirm == JOptionPane.OK_OPTION){
+            try {
+                
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "DELETE FROM lecturer WHERE lecturerID = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, lecId);
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "lecturer deleted sucesfully");
+                    jtblLecturer.setModel(new DefaultTableModel(null, new Object[] {"Lecturer ID","First name","Last name","email","Mobile","Address","Age","Title","Module","Qualification","Branch"}));
+                    getLecturerValue(jtblLecturer);
+                    clearLecturer();
+                
+                }
+            }catch (SQLException s){
+                JOptionPane.showMessageDialog(null, s);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        if(isEmptyLecturer()){
+            String lecID = txtLecId.getText();
+            String fName = txtLfName.getText();
+            String lName = txtLlName.getText();
+            String email = txtLemail.getText();
+            String mobile = txtLmobile.getText();
+            String address = txtLaddress.getText();
+            int age = Integer.parseInt(txtLage.getText());
+            
+            String title = cmbLtitle.getSelectedItem().toString();
+            String module = cmbLmodule.getSelectedItem().toString();
+            String qualification = txtLqualification.getText();
+            String branch = cmbLbranch.getSelectedItem().toString();
+            
+            
+            
+            try {
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "UPDATE lecturer SET firstName=?, lastName=?, email=?, mobile=?, address=?, age=?, title=?, module=?, qualification=?, branch=? WHERE lecturerID=?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                
+                ps.setString(1, fName);
+                ps.setString(2, lName);
+                ps.setString(3, email);
+                ps.setString(4, mobile);
+                ps.setString(5, address);
+                ps.setInt(6, age);
+                ps.setString(7, title);
+                ps.setString(8, module);
+                ps.setString(9, qualification);
+                ps.setString(10, branch);
+                ps.setString(11, lecID);
+                
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "lecturer updated sucesfully");
+                    jtblLecturer.setModel(new DefaultTableModel(null, new Object[] {"Lecturer ID","First name","Last name","email","Mobile","Address","Age","Title","Module","Qualification","Branch"}));
+                    getLecturerValue(jtblLecturer);
+                    clearLecturer();
+                
+                }
+                
+                
+            } catch (SQLException s) {
+                JOptionPane.showMessageDialog(null, s);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3660,7 +3757,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
@@ -3716,6 +3812,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField txtLmobile;
     private javax.swing.JTextField txtLname;
     private javax.swing.JTextField txtLqualification;
+    private javax.swing.JTextField txtLsearch;
     private javax.swing.JTextField txtMobile;
     private javax.swing.JTextField txtPname;
     private javax.swing.JTextField txtSearch;

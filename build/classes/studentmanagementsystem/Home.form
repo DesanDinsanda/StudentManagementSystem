@@ -1306,7 +1306,7 @@
                                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                                   <Component id="jLabel7" min="-2" pref="109" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" min="-2" pref="272" max="-2" attributes="0"/>
+                                  <Component id="txtLsearch" min="-2" pref="272" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                                   <Component id="jButton8" min="-2" pref="101" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1321,7 +1321,7 @@
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtLsearch" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -1339,9 +1339,9 @@
                             <Property name="text" type="java.lang.String" value="Search Lecturer"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField2">
+                        <Component class="javax.swing.JTextField" name="txtLsearch">
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLsearchActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton8">
@@ -1563,6 +1563,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Update"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton12">
                           <Properties>
@@ -1577,6 +1580,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Delete"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton12ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton13">
                           <Properties>
