@@ -552,7 +552,7 @@ public class Home extends javax.swing.JFrame {
         jPanel17 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtCsearch = new javax.swing.JTextField();
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
@@ -1786,9 +1786,9 @@ public class Home extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setText("Search Year");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtCsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtCsearchActionPerformed(evt);
             }
         });
 
@@ -1818,7 +1818,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1831,7 +1831,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton15)
                     .addComponent(jButton16))
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -1851,6 +1851,11 @@ public class Home extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jtblCourse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtblCourseMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(jtblCourse);
@@ -1893,6 +1898,11 @@ public class Home extends javax.swing.JFrame {
         jButton19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton19.setForeground(new java.awt.Color(255, 255, 255));
         jButton19.setText("Delete");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         jButton20.setBackground(new java.awt.Color(96, 108, 56));
         jButton20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -3082,16 +3092,23 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCyearActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtCsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCsearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtCsearchActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
+        if(txtCsearch.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter a value");
+        }else{
+            jtblCourse.setModel(new DefaultTableModel(null, new Object[] {"Course ID","Year","Programme","Module 1","Module 2","Module 3","Module 4","Module 5","Module 6","Module 7","Module 8","Module 9","Module10","Module11"}));
+            getCourseValues(jtblCourse,txtCsearch.getText());
+        }
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+        jtblCourse.setModel(new DefaultTableModel(null, new Object[] {"Course ID","Year","Programme","Module 1","Module 2","Module 3","Module 4","Module 5","Module 6","Module 7","Module 8","Module 9","Module10","Module11"}));
+        getCourseValue(jtblCourse);
+        txtCsearch.setText(null);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -3742,12 +3759,115 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:ss
+        clearCourse();
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        
+        if(isEmptyCourse()){
+            String courseID = txtCorseId.getText();
+            int year = Integer.parseInt(txtCyear.getText());
+            String programme = cmbCprogramm.getSelectedItem().toString();
+            String module1 = cmbCmodule1.getSelectedItem().toString();
+            String module2 = cmbCmodule2.getSelectedItem().toString();
+            String module3 = cmbCmodule3.getSelectedItem().toString();
+            String module4 = cmbCmodule4.getSelectedItem().toString();
+            String module5 = cmbCmodule5.getSelectedItem().toString();
+            String module6 = cmbCmodule6.getSelectedItem().toString();
+            String module7 = cmbCmodule7.getSelectedItem().toString();
+            String module8 = cmbCmodule8.getSelectedItem().toString();
+            String module9 = cmbCmodule9.getSelectedItem().toString();
+            String module10 = cmbCmodule10.getSelectedItem().toString();
+            String module11 = cmbCmodule11.getSelectedItem().toString();
+            
+            
+            
+            try {
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "UPDATE course SET  year=?, programme=?, module1=?, module2=?, module3=?, module4=?, module5=?, module6=?, module7=?, module8=?, module9=?, module10=?, module11=?  WHERE courseID=?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                
+                ps.setInt(1, year);
+                ps.setString(2, programme);
+                ps.setString(3, module1);
+                ps.setString(4, module2);
+                ps.setString(5, module3);
+                ps.setString(6, module4);
+                ps.setString(7, module5);
+                ps.setString(8, module6);
+                ps.setString(9, module7);
+                ps.setString(10, module8);
+                ps.setString(11, module9);
+                ps.setString(12, module10);
+                ps.setString(13, module11);
+                ps.setString(14, courseID);
+                
+                
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "course updated sucesfully");
+                    jtblCourse.setModel(new DefaultTableModel(null, new Object[] {"Course ID","Year","Programme","Module 1","Module 2","Module 3","Module 4","Module 5","Module 6","Module 7","Module 8","Module 9","Module10","Module11"}));
+                    getCourseValue(jtblCourse);
+                    clearCourse();
+                
+                }
+                
+                
+            } catch (SQLException s) {
+                JOptionPane.showMessageDialog(null, s);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jtblCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblCourseMouseClicked
+        model = (DefaultTableModel) jtblCourse.getModel();
+        rowIndex = jtblCourse.getSelectedRow();
+        
+        txtCorseId.setText(jtblCourse.getValueAt(rowIndex, 0).toString());
+        txtCyear.setText(jtblCourse.getValueAt(rowIndex, 1).toString());
+        cmbCprogramm.setSelectedItem(jtblCourse.getValueAt(rowIndex, 2).toString());
+        cmbCmodule1.setSelectedItem(jtblCourse.getValueAt(rowIndex, 3).toString());
+        cmbCmodule2.setSelectedItem(jtblCourse.getValueAt(rowIndex, 4).toString());
+        cmbCmodule3.setSelectedItem(jtblCourse.getValueAt(rowIndex, 5).toString());
+        cmbCmodule4.setSelectedItem(jtblCourse.getValueAt(rowIndex, 6).toString());
+        cmbCmodule5.setSelectedItem(jtblCourse.getValueAt(rowIndex, 7).toString());
+        cmbCmodule6.setSelectedItem(jtblCourse.getValueAt(rowIndex, 8).toString());
+        cmbCmodule7.setSelectedItem(jtblCourse.getValueAt(rowIndex, 9).toString());
+        cmbCmodule8.setSelectedItem(jtblCourse.getValueAt(rowIndex, 10).toString());
+        cmbCmodule9.setSelectedItem(jtblCourse.getValueAt(rowIndex, 11).toString());
+        cmbCmodule10.setSelectedItem(jtblCourse.getValueAt(rowIndex, 12).toString());
+        cmbCmodule11.setSelectedItem(jtblCourse.getValueAt(rowIndex, 13).toString());
+        
+    }//GEN-LAST:event_jtblCourseMouseClicked
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        String courseID = txtCorseId.getText();
+        if(courseID.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please select a ID first");
+        }else{
+        int confirm = JOptionPane.showConfirmDialog(null, "Do you want to delete this course", "Conifrm course deletion", JOptionPane.OK_CANCEL_OPTION,0);
+        if(confirm == JOptionPane.OK_OPTION){
+            try {
+                
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "DELETE FROM course WHERE courseID = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, courseID);
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "course deleted sucesfully");
+                    jtblCourse.setModel(new DefaultTableModel(null, new Object[] {"Course ID","Year","Programme","Module 1","Module 2","Module 3","Module 4","Module 5","Module 6","Module 7","Module 8","Module 9","Module10","Module11"}));
+                    getCourseValue(jtblCourse);
+                    clearCourse();
+                
+                }
+            }catch (SQLException s){
+                JOptionPane.showMessageDialog(null, s);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        }
+    }//GEN-LAST:event_jButton19ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3957,7 +4077,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField32;
     private javax.swing.JTextField jTextField33;
@@ -3996,6 +4115,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtCorseId;
+    private javax.swing.JTextField txtCsearch;
     private javax.swing.JTextField txtCyear;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFname;
