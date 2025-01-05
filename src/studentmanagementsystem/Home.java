@@ -39,6 +39,7 @@ public class Home extends javax.swing.JFrame {
     public void init(){
         tableViewStudent();
         tableViewLecturer();
+        tableViewCourse();
     }
     
     //Code star for Student--------------------------------------------------------------------------------------------------------
@@ -181,7 +182,7 @@ public class Home extends javax.swing.JFrame {
     //codes start for lecturer-------------------------------------------------------------------------------------------------------------
     
     private void tableViewLecturer(){
-        getLecturerValues(jtblLecturer,"");
+        getLecturerValue(jtblLecturer);
         model = (DefaultTableModel) jtblLecturer.getModel();
         jtblLecturer.setRowHeight(30);
         jtblLecturer.setShowGrid(true);
@@ -310,6 +311,126 @@ public class Home extends javax.swing.JFrame {
     // Lecturer code end-------------------------------------------------------------------------------------------------------------
     
     
+    // Codes start for course  ----------------------------------------------------------------------------------------------------
+    
+    private void tableViewCourse(){
+        getCourseValue(jtblCourse);
+        model = (DefaultTableModel) jtblCourse.getModel();
+        jtblCourse.setRowHeight(30);
+        jtblCourse.setShowGrid(true);
+        jtblCourse.setGridColor(Color.black);
+        jtblCourse.setBackground(Color.white);
+        
+    }
+    
+    private void clearCourse(){
+        txtCorseId.setText(null);
+        txtCyear.setText(null);
+        cmbProgramme.setSelectedIndex(0);
+        cmbCmodule1.setSelectedIndex(0);
+        cmbCmodule2.setSelectedIndex(0);
+        cmbCmodule3.setSelectedIndex(0);
+        cmbCmodule4.setSelectedIndex(0);
+        cmbCmodule5.setSelectedIndex(0);
+        cmbCmodule6.setSelectedIndex(0);
+        cmbCmodule7.setSelectedIndex(0);
+        cmbCmodule8.setSelectedIndex(0);
+        cmbCmodule9.setSelectedIndex(0);
+        cmbCmodule10.setSelectedIndex(0);
+        cmbCmodule11.setSelectedIndex(0);
+        
+        
+        
+        
+        
+    }
+    
+    public boolean isEmptyCourse(){
+        if(txtCorseId.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Course ID can not be empty");
+        }
+        else if(txtCyear.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Year can not be empty");
+        }
+        
+        
+        return true;
+            
+    }
+    
+    //get all the data from course table
+    public void getCourseValue(JTable table){
+        String sql = "SELECT * FROM course";
+        try {
+            Connection con = SingletonConnection.getInstance().getConnection();
+    
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Object[] row;
+            
+            while(rs.next()){
+            row = new Object[14];
+            row[0] = rs.getString(1);
+            row[1] = rs.getInt(2);
+            row[2] = rs.getString(3);
+            row[3] = rs.getString(4);
+            row[4] = rs.getString(5);
+            row[5] = rs.getString(6);
+            row[6] = rs.getString(7);
+            row[7] = rs.getString(8);
+            row[8] = rs.getString(9);
+            row[9] = rs.getString(10);
+            row[10] = rs.getString(11);
+            row[11] = rs.getString(12);
+            row[12] = rs.getString(13);
+            row[13] = rs.getString(14);
+            model.addRow(row);
+            
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void getCourseValues(JTable table,String searchValue){
+        String sql = "SELECT * FROM course WHERE concat(courseID,year,programme,module1,module2,module3,module4,module5,module6,module7,module8,module9,module9,module10,module11) LIKE ? ";
+        try {
+            Connection con = SingletonConnection.getInstance().getConnection();
+    
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,"%" + searchValue + "%");
+            ResultSet rs = ps.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Object[] row;
+            
+            while(rs.next()){
+            row = new Object[14];
+            row[0] = rs.getString(1);
+            row[1] = rs.getInt(2);
+            row[2] = rs.getString(3);
+            row[3] = rs.getString(4);
+            row[4] = rs.getString(5);
+            row[5] = rs.getString(6);
+            row[6] = rs.getString(7);
+            row[7] = rs.getString(8);
+            row[8] = rs.getString(9);
+            row[9] = rs.getString(10);
+            row[10] = rs.getString(11);
+            row[11] = rs.getString(12);
+            row[12] = rs.getString(13);
+            row[13] = rs.getString(14);
+            model.addRow(row);
+            
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    //End the codes for Course -----------------------------------------------------------------------------------------
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -408,27 +529,26 @@ public class Home extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
-        jTextField26 = new javax.swing.JTextField();
-        jTextField31 = new javax.swing.JTextField();
-        jComboBox9 = new javax.swing.JComboBox<>();
+        txtCorseId = new javax.swing.JTextField();
+        txtCyear = new javax.swing.JTextField();
+        cmbCprogramm = new javax.swing.JComboBox<>();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
-        jComboBox11 = new javax.swing.JComboBox<>();
-        jComboBox13 = new javax.swing.JComboBox<>();
-        jComboBox14 = new javax.swing.JComboBox<>();
-        jComboBox15 = new javax.swing.JComboBox<>();
-        jComboBox16 = new javax.swing.JComboBox<>();
-        jComboBox17 = new javax.swing.JComboBox<>();
-        jComboBox18 = new javax.swing.JComboBox<>();
-        jComboBox19 = new javax.swing.JComboBox<>();
-        jComboBox20 = new javax.swing.JComboBox<>();
+        cmbCmodule1 = new javax.swing.JComboBox<>();
+        cmbCmodule2 = new javax.swing.JComboBox<>();
+        cmbCmodule5 = new javax.swing.JComboBox<>();
+        cmbCmodule6 = new javax.swing.JComboBox<>();
+        cmbCmodule8 = new javax.swing.JComboBox<>();
+        cmbCmodule9 = new javax.swing.JComboBox<>();
+        cmbCmodule7 = new javax.swing.JComboBox<>();
+        cmbCmodule10 = new javax.swing.JComboBox<>();
+        cmbCmodule3 = new javax.swing.JComboBox<>();
         jLabel52 = new javax.swing.JLabel();
-        jComboBox21 = new javax.swing.JComboBox<>();
-        jComboBox23 = new javax.swing.JComboBox<>();
+        cmbCmodule4 = new javax.swing.JComboBox<>();
+        cmbCmodule11 = new javax.swing.JComboBox<>();
         jPanel17 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -437,7 +557,7 @@ public class Home extends javax.swing.JFrame {
         jButton16 = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jtblCourse = new javax.swing.JTable();
         jPanel20 = new javax.swing.JPanel();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
@@ -1434,22 +1554,16 @@ public class Home extends javax.swing.JFrame {
         jLabel32.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel32.setText("Module 6");
 
-        jTextField26.addActionListener(new java.awt.event.ActionListener() {
+        txtCyear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField26ActionPerformed(evt);
+                txtCyearActionPerformed(evt);
             }
         });
 
-        jTextField31.addActionListener(new java.awt.event.ActionListener() {
+        cmbCprogramm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DSE", "DNE", "DCSD" }));
+        cmbCprogramm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField31ActionPerformed(evt);
-            }
-        });
-
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DSE", "DNE", "DCSD" }));
-        jComboBox9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox9ActionPerformed(evt);
+                cmbCprogrammActionPerformed(evt);
             }
         });
 
@@ -1468,83 +1582,83 @@ public class Home extends javax.swing.JFrame {
         jLabel51.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel51.setText("Module 7");
 
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox11.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox11ActionPerformed(evt);
+                cmbCmodule1ActionPerformed(evt);
             }
         });
 
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox13.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox13ActionPerformed(evt);
+                cmbCmodule2ActionPerformed(evt);
             }
         });
 
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox14.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox14ActionPerformed(evt);
+                cmbCmodule5ActionPerformed(evt);
             }
         });
 
-        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox15.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox15ActionPerformed(evt);
+                cmbCmodule6ActionPerformed(evt);
             }
         });
 
-        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox16.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox16ActionPerformed(evt);
+                cmbCmodule8ActionPerformed(evt);
             }
         });
 
-        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox17.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox17ActionPerformed(evt);
+                cmbCmodule9ActionPerformed(evt);
             }
         });
 
-        jComboBox18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox18.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox18ActionPerformed(evt);
+                cmbCmodule7ActionPerformed(evt);
             }
         });
 
-        jComboBox19.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox19.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox19ActionPerformed(evt);
+                cmbCmodule10ActionPerformed(evt);
             }
         });
 
-        jComboBox20.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox20.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox20ActionPerformed(evt);
+                cmbCmodule3ActionPerformed(evt);
             }
         });
 
         jLabel52.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel52.setText("Module 4");
 
-        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox21.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox21ActionPerformed(evt);
+                cmbCmodule4ActionPerformed(evt);
             }
         });
 
-        jComboBox23.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
-        jComboBox23.addActionListener(new java.awt.event.ActionListener() {
+        cmbCmodule11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Introduction to Computer Science", "Mathematics for Computing", "Programming Fundamentals", "Computer Technology", "Object-Oriented Programming", "Database Management Systems", "Computer Architecture and Networks", "GUI Application Development", "Operating Systems", "Enterprise Application Development-1", "Web Application Development", "Software Engineering", "Electronics and Computer Organization", "Data Communication ", "Routing and Switching Essentials", "Scaling Networks", "System Essentials", "Connecting Networks", "Network Engineering Project", "Business Communication Skills", "Fundamentals of Electronics", "Introduction to IOT", "Networking Fundamentals", "System Analysis and Design", "Creative Thinking & Problem Solving", "Developing Modern Web", "SEO & Digital Marketing" }));
+        cmbCmodule11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox23ActionPerformed(evt);
+                cmbCmodule11ActionPerformed(evt);
             }
         });
 
@@ -1558,19 +1672,19 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jComboBox21, 0, 251, Short.MAX_VALUE))
+                        .addComponent(cmbCmodule4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jComboBox19, 0, 251, Short.MAX_VALUE))
+                        .addComponent(cmbCmodule10, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jComboBox17, 0, 251, Short.MAX_VALUE))
+                        .addComponent(cmbCmodule9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jComboBox23, 0, 251, Short.MAX_VALUE))
+                        .addComponent(cmbCmodule11, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1585,83 +1699,82 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox16, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox18, 0, 251, Short.MAX_VALUE)
-                            .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField31, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                .addComponent(jTextField26, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                .addComponent(jTextField25)
-                                .addComponent(jComboBox11, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox13, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox14, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox15, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox20, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox9, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(cmbCmodule8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbCmodule7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel16Layout.createSequentialGroup()
+                                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtCyear, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                        .addComponent(cmbCmodule1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbCmodule2, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbCmodule5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbCmodule6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbCmodule3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbCprogramm, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtCorseId, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtCorseId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel26))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27)))
-                    .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel26)
+                    .addComponent(cmbCprogramm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbCmodule1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCmodule2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
-                    .addComponent(jComboBox20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCmodule3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel52)
-                    .addComponent(jComboBox21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCmodule4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCmodule5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel32)
-                    .addComponent(jComboBox15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCmodule6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel51)
-                    .addComponent(jComboBox18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCmodule7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel50)
-                    .addComponent(jComboBox16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCmodule8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel49)
-                    .addComponent(jComboBox17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCmodule9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel48)
-                    .addComponent(jComboBox19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCmodule10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel47)
-                    .addComponent(jComboBox23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmbCmodule11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         jPanel17.setBackground(new java.awt.Color(221, 161, 94));
@@ -1724,7 +1837,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jtblCourse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1740,7 +1853,7 @@ public class Home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(jtblCourse);
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -1760,11 +1873,21 @@ public class Home extends javax.swing.JFrame {
         jButton17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton17.setForeground(new java.awt.Color(255, 255, 255));
         jButton17.setText("Schedule");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setBackground(new java.awt.Color(96, 108, 56));
         jButton18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton18.setForeground(new java.awt.Color(255, 255, 255));
         jButton18.setText("Update");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jButton19.setBackground(new java.awt.Color(96, 108, 56));
         jButton19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1775,6 +1898,11 @@ public class Home extends javax.swing.JFrame {
         jButton20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton20.setForeground(new java.awt.Color(255, 255, 255));
         jButton20.setText("Clear");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
 
         jButton21.setBackground(new java.awt.Color(96, 108, 56));
         jButton21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1849,7 +1977,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2950,13 +3078,9 @@ public class Home extends javax.swing.JFrame {
             txtLsearch.setText(null);
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jTextField26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField26ActionPerformed
+    private void txtCyearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCyearActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField26ActionPerformed
-
-    private void jTextField31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField31ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField31ActionPerformed
+    }//GEN-LAST:event_txtCyearActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -2994,57 +3118,57 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbLbranchActionPerformed
 
-    private void jComboBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox9ActionPerformed
+    private void cmbCprogrammActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCprogrammActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox9ActionPerformed
+    }//GEN-LAST:event_cmbCprogrammActionPerformed
 
     private void cmbLmoduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLmoduleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbLmoduleActionPerformed
 
-    private void jComboBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox11ActionPerformed
+    private void cmbCmodule1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox11ActionPerformed
+    }//GEN-LAST:event_cmbCmodule1ActionPerformed
 
-    private void jComboBox13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox13ActionPerformed
+    private void cmbCmodule2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox13ActionPerformed
+    }//GEN-LAST:event_cmbCmodule2ActionPerformed
 
-    private void jComboBox14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox14ActionPerformed
+    private void cmbCmodule5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox14ActionPerformed
+    }//GEN-LAST:event_cmbCmodule5ActionPerformed
 
-    private void jComboBox15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox15ActionPerformed
+    private void cmbCmodule6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox15ActionPerformed
+    }//GEN-LAST:event_cmbCmodule6ActionPerformed
 
-    private void jComboBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox16ActionPerformed
+    private void cmbCmodule8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox16ActionPerformed
+    }//GEN-LAST:event_cmbCmodule8ActionPerformed
 
-    private void jComboBox17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox17ActionPerformed
+    private void cmbCmodule9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule9ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox17ActionPerformed
+    }//GEN-LAST:event_cmbCmodule9ActionPerformed
 
-    private void jComboBox18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox18ActionPerformed
+    private void cmbCmodule7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox18ActionPerformed
+    }//GEN-LAST:event_cmbCmodule7ActionPerformed
 
-    private void jComboBox19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox19ActionPerformed
+    private void cmbCmodule10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule10ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox19ActionPerformed
+    }//GEN-LAST:event_cmbCmodule10ActionPerformed
 
-    private void jComboBox20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox20ActionPerformed
+    private void cmbCmodule3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox20ActionPerformed
+    }//GEN-LAST:event_cmbCmodule3ActionPerformed
 
-    private void jComboBox21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox21ActionPerformed
+    private void cmbCmodule4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox21ActionPerformed
+    }//GEN-LAST:event_cmbCmodule4ActionPerformed
 
-    private void jComboBox23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox23ActionPerformed
+    private void cmbCmodule11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCmodule11ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox23ActionPerformed
+    }//GEN-LAST:event_cmbCmodule11ActionPerformed
 
     private void jTextField32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField32ActionPerformed
         // TODO add your handling code here:
@@ -3552,6 +3676,79 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        if(isEmptyCourse()){
+            String courseID = txtCorseId.getText();
+            int year = Integer.parseInt(txtCyear.getText());
+            String programme = cmbCprogramm.getSelectedItem().toString();
+            String module1 = cmbCmodule1.getSelectedItem().toString();
+            String module2 = cmbCmodule2.getSelectedItem().toString();
+            String module3 = cmbCmodule3.getSelectedItem().toString();
+            String module4 = cmbCmodule4.getSelectedItem().toString();
+            String module5 = cmbCmodule5.getSelectedItem().toString();
+            String module6 = cmbCmodule6.getSelectedItem().toString();
+            String module7 = cmbCmodule7.getSelectedItem().toString();
+            String module8 = cmbCmodule8.getSelectedItem().toString();
+            String module9 = cmbCmodule9.getSelectedItem().toString();
+            String module10 = cmbCmodule10.getSelectedItem().toString();
+            String module11 = cmbCmodule11.getSelectedItem().toString();
+            
+            
+            
+            
+            
+            
+            //Add data to student table
+            try {
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "INSERT INTO course values(?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, courseID);
+                ps.setInt(2, year);
+                ps.setString(3, programme);
+                ps.setString(4, module1);
+                ps.setString(5, module2);
+                ps.setString(6, module3);
+                ps.setString(7, module4);
+                ps.setString(8, module5);
+                ps.setString(9, module6);
+                ps.setString(10, module7);
+                ps.setString(11, module8);
+                ps.setString(12, module9);
+                ps.setString(13, module10);
+                ps.setString(14, module11);
+                
+                
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "new course added sucesfully");
+                    jtblCourse.setModel(new DefaultTableModel(null, new Object[] {"Course ID","Year","Programme","Module 1","Module 2","Module 3","Module 4","Module 5","Module 6","Module 7","Module 8","Module 9","Module10","Module11"}));
+                    getCourseValue(jtblCourse);
+                    clearCourse();
+                
+                }
+                
+                
+            } catch (SQLException s) {
+                JOptionPane.showMessageDialog(null, s);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+            
+            
+            
+            
+        
+        }
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        // TODO add your handling code here:ss
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        
+    }//GEN-LAST:event_jButton18ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3590,6 +3787,18 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbBranch;
+    private javax.swing.JComboBox<String> cmbCmodule1;
+    private javax.swing.JComboBox<String> cmbCmodule10;
+    private javax.swing.JComboBox<String> cmbCmodule11;
+    private javax.swing.JComboBox<String> cmbCmodule2;
+    private javax.swing.JComboBox<String> cmbCmodule3;
+    private javax.swing.JComboBox<String> cmbCmodule4;
+    private javax.swing.JComboBox<String> cmbCmodule5;
+    private javax.swing.JComboBox<String> cmbCmodule6;
+    private javax.swing.JComboBox<String> cmbCmodule7;
+    private javax.swing.JComboBox<String> cmbCmodule8;
+    private javax.swing.JComboBox<String> cmbCmodule9;
+    private javax.swing.JComboBox<String> cmbCprogramm;
     private javax.swing.JComboBox<String> cmbLbranch;
     private javax.swing.JComboBox<String> cmbLmodule;
     private javax.swing.JComboBox<String> cmbLtitle;
@@ -3632,21 +3841,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox11;
-    private javax.swing.JComboBox<String> jComboBox13;
-    private javax.swing.JComboBox<String> jComboBox14;
-    private javax.swing.JComboBox<String> jComboBox15;
-    private javax.swing.JComboBox<String> jComboBox16;
-    private javax.swing.JComboBox<String> jComboBox17;
-    private javax.swing.JComboBox<String> jComboBox18;
-    private javax.swing.JComboBox<String> jComboBox19;
-    private javax.swing.JComboBox<String> jComboBox20;
-    private javax.swing.JComboBox<String> jComboBox21;
     private javax.swing.JComboBox<String> jComboBox22;
-    private javax.swing.JComboBox<String> jComboBox23;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3753,19 +3950,15 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField30;
-    private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;
     private javax.swing.JTextField jTextField33;
     private javax.swing.JTextField jTextField34;
@@ -3797,10 +3990,13 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField60;
     private javax.swing.JTextField jTextField61;
     private javax.swing.JTextField jTextField62;
+    private javax.swing.JTable jtblCourse;
     private javax.swing.JTable jtblLecturer;
     private javax.swing.JTable jtblStudent;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtCorseId;
+    private javax.swing.JTextField txtCyear;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFname;
     private javax.swing.JTextField txtLaddress;
