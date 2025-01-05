@@ -40,6 +40,7 @@ public class Home extends javax.swing.JFrame {
         tableViewStudent();
         tableViewLecturer();
         tableViewCourse();
+        tableViewResult();
     }
     
     //Code star for Student--------------------------------------------------------------------------------------------------------
@@ -431,6 +432,165 @@ public class Home extends javax.swing.JFrame {
     //End the codes for Course -----------------------------------------------------------------------------------------
     
     
+    //Start the code for Result---------------------------------------------------------------------------------------
+     private void tableViewResult(){
+        getResultValue(jtblResult);
+        model = (DefaultTableModel) jtblResult.getModel();
+        jtblResult.setRowHeight(30);
+        jtblResult.setShowGrid(true);
+        jtblResult.setGridColor(Color.black);
+        jtblResult.setBackground(Color.white);
+        
+    }
+    
+    private void clearResult(){
+        txtRyear.setText(null);
+        cmbRprogramme.setSelectedIndex(0);
+        txtRID.setText(null);
+        txtStdID.setText(null);
+        txtRmodule1.setText(null);
+        txtRmodule2.setText(null);
+        txtRmodule3.setText(null);
+        txtRmodule4.setText(null);
+        txtRmodule5.setText(null);
+        txtRmodule6.setText(null);
+        txtRmodule7.setText(null);
+        txtRmodule8.setText(null);
+        txtRmodule9.setText(null);
+        txtRmodule10.setText(null);
+        txtRmodule11.setText(null);
+        txtMark1.setText(null);
+        txtMark2.setText(null);
+        txtMark3.setText(null);
+        txtMark4.setText(null);
+        txtMark5.setText(null);
+        txtMark6.setText(null);
+        txtMark7.setText(null);
+        txtMark8.setText(null);
+        txtMark9.setText(null);
+        txtMark10.setText(null);
+        txtMark11.setText(null);
+        
+        
+        
+    }
+    
+    public boolean isEmptyResult(){
+        if(txtRyear.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Year can not be empty");
+        }
+        else if(txtRID.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Result ID can not be empty");
+        }
+        else if(txtStdID.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Student ID can not be empty");
+        }
+        
+        
+        return true;
+            
+    }
+    
+    //get all the data from course table
+    public void getResultValue(JTable table){
+        String sql = "SELECT * FROM result";
+        try {
+            Connection con = SingletonConnection.getInstance().getConnection();
+    
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Object[] row;
+            
+            while(rs.next()){
+            row = new Object[26];
+            
+            row[0] = rs.getString(1);
+            row[1] = rs.getString(2);
+            row[2] = rs.getInt(3);
+            row[3] = rs.getString(4);
+            row[4] = rs.getString(5);
+            row[5] = rs.getDouble(6);
+            row[6] = rs.getString(7);
+            row[7] = rs.getDouble(8);
+            row[8] = rs.getString(9);
+            row[9] = rs.getDouble(10);
+            row[10] = rs.getString(11);
+            row[11] = rs.getDouble(12);
+            row[12] = rs.getString(13);
+            row[13] = rs.getDouble(14);
+            row[14] = rs.getString(15);
+            row[15] = rs.getDouble(16);
+            row[16] = rs.getString(17);
+            row[17] = rs.getDouble(18);
+            row[18] = rs.getString(19);
+            row[19] = rs.getDouble(20);
+            row[20] = rs.getString(21);
+            row[21] = rs.getDouble(22);
+            row[22] = rs.getString(23);
+            row[23] = rs.getDouble(24);
+            row[24] = rs.getString(25);
+            row[25] = rs.getDouble(26);
+
+            
+            
+            model.addRow(row);
+            
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void getResultValues(JTable table,String searchValue){
+        String sql = "SELECT * FROM result WHERE concat(resultID,studentID,year,program,module1,result1,module2,result2,module3,result3,module4,result4,module5,result5,module6,result6,module7,result7,module8,result8,module9,result9,module10,result10,module11,result11) LIKE ? ";
+        try {
+            Connection con = SingletonConnection.getInstance().getConnection();
+    
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,"%" + searchValue + "%");
+            ResultSet rs = ps.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Object[] row;
+            
+            while(rs.next()){
+            row = new Object[26];
+            row[0] = rs.getString(1);
+            row[1] = rs.getString(2);
+            row[2] = rs.getInt(3);
+            row[3] = rs.getString(4);
+            row[4] = rs.getString(5);
+            row[5] = rs.getDouble(6);
+            row[6] = rs.getString(7);
+            row[7] = rs.getDouble(8);
+            row[8] = rs.getString(9);
+            row[9] = rs.getDouble(10);
+            row[10] = rs.getString(11);
+            row[11] = rs.getDouble(12);
+            row[12] = rs.getString(13);
+            row[13] = rs.getDouble(14);
+            row[14] = rs.getString(15);
+            row[15] = rs.getDouble(16);
+            row[16] = rs.getString(17);
+            row[17] = rs.getDouble(18);
+            row[18] = rs.getString(19);
+            row[19] = rs.getDouble(20);
+            row[20] = rs.getString(21);
+            row[21] = rs.getDouble(22);
+            row[22] = rs.getString(23);
+            row[23] = rs.getDouble(24);
+            row[24] = rs.getString(25);
+            row[25] = rs.getDouble(26);
+            
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    //End the code for Result-------------------------------------------------------------------------------------------------
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -568,14 +728,14 @@ public class Home extends javax.swing.JFrame {
         jPanel22 = new javax.swing.JPanel();
         jPanel27 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
+        txtRyear = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jButton29 = new javax.swing.JButton();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmbRprogramme = new javax.swing.JComboBox<>();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
-        jTextField28 = new javax.swing.JTextField();
+        txtRID = new javax.swing.JTextField();
+        txtStdID = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
@@ -587,28 +747,28 @@ public class Home extends javax.swing.JFrame {
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
-        jTextField29 = new javax.swing.JTextField();
-        jTextField30 = new javax.swing.JTextField();
-        jTextField33 = new javax.swing.JTextField();
-        jTextField34 = new javax.swing.JTextField();
-        jTextField35 = new javax.swing.JTextField();
-        jTextField36 = new javax.swing.JTextField();
-        jTextField37 = new javax.swing.JTextField();
-        jTextField38 = new javax.swing.JTextField();
-        jTextField39 = new javax.swing.JTextField();
-        jTextField40 = new javax.swing.JTextField();
-        jTextField41 = new javax.swing.JTextField();
-        jTextField42 = new javax.swing.JTextField();
-        jTextField43 = new javax.swing.JTextField();
-        jTextField44 = new javax.swing.JTextField();
-        jTextField46 = new javax.swing.JTextField();
-        jTextField47 = new javax.swing.JTextField();
-        jTextField48 = new javax.swing.JTextField();
-        jTextField49 = new javax.swing.JTextField();
-        jTextField50 = new javax.swing.JTextField();
-        jTextField51 = new javax.swing.JTextField();
-        jTextField52 = new javax.swing.JTextField();
-        jTextField53 = new javax.swing.JTextField();
+        txtRmodule1 = new javax.swing.JTextField();
+        txtRmodule2 = new javax.swing.JTextField();
+        txtRmodule3 = new javax.swing.JTextField();
+        txtRmodule4 = new javax.swing.JTextField();
+        txtRmodule6 = new javax.swing.JTextField();
+        txtRmodule5 = new javax.swing.JTextField();
+        txtRmodule9 = new javax.swing.JTextField();
+        txtRmodule7 = new javax.swing.JTextField();
+        txtRmodule8 = new javax.swing.JTextField();
+        txtRmodule10 = new javax.swing.JTextField();
+        txtRmodule11 = new javax.swing.JTextField();
+        txtMark1 = new javax.swing.JTextField();
+        txtMark2 = new javax.swing.JTextField();
+        txtMark4 = new javax.swing.JTextField();
+        txtMark3 = new javax.swing.JTextField();
+        txtMark5 = new javax.swing.JTextField();
+        txtMark6 = new javax.swing.JTextField();
+        txtMark7 = new javax.swing.JTextField();
+        txtMark8 = new javax.swing.JTextField();
+        txtMark11 = new javax.swing.JTextField();
+        txtMark9 = new javax.swing.JTextField();
+        txtMark10 = new javax.swing.JTextField();
         jPanel23 = new javax.swing.JPanel();
         jPanel24 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
@@ -617,7 +777,7 @@ public class Home extends javax.swing.JFrame {
         jButton23 = new javax.swing.JButton();
         jPanel25 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jtblResult = new javax.swing.JTable();
         jPanel26 = new javax.swing.JPanel();
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
@@ -2012,9 +2172,9 @@ public class Home extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel28.setText("Year");
 
-        jTextField32.addActionListener(new java.awt.event.ActionListener() {
+        txtRyear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField32ActionPerformed(evt);
+                txtRyearActionPerformed(evt);
             }
         });
 
@@ -2025,11 +2185,16 @@ public class Home extends javax.swing.JFrame {
         jButton29.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jButton29.setForeground(new java.awt.Color(255, 255, 255));
         jButton29.setText("Search");
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DSE", "DNE", "DCSD" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        jButton29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                jButton29ActionPerformed(evt);
+            }
+        });
+
+        cmbRprogramme.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DSE", "DNE", "DCSD" }));
+        cmbRprogramme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRprogrammeActionPerformed(evt);
             }
         });
 
@@ -2043,11 +2208,11 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel27Layout.createSequentialGroup()
                         .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtRyear, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel27Layout.createSequentialGroup()
                         .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cmbRprogramme, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(60, 60, 60)
                 .addComponent(jButton29)
                 .addContainerGap(102, Short.MAX_VALUE))
@@ -2060,11 +2225,11 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel27Layout.createSequentialGroup()
                         .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel28)
-                            .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16)
                         .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel33)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbRprogramme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jButton29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -2076,9 +2241,9 @@ public class Home extends javax.swing.JFrame {
         jLabel40.setFont(new java.awt.Font("Segoe UI Emoji", 2, 18)); // NOI18N
         jLabel40.setText("Student ID");
 
-        jTextField28.addActionListener(new java.awt.event.ActionListener() {
+        txtStdID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField28ActionPerformed(evt);
+                txtStdIDActionPerformed(evt);
             }
         });
 
@@ -2115,123 +2280,136 @@ public class Home extends javax.swing.JFrame {
         jLabel58.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel58.setText("Module 7");
 
-        jTextField30.addActionListener(new java.awt.event.ActionListener() {
+        txtRmodule1.setEditable(false);
+
+        txtRmodule2.setEditable(false);
+        txtRmodule2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField30ActionPerformed(evt);
+                txtRmodule2ActionPerformed(evt);
             }
         });
 
-        jTextField34.addActionListener(new java.awt.event.ActionListener() {
+        txtRmodule3.setEditable(false);
+
+        txtRmodule4.setEditable(false);
+        txtRmodule4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField34ActionPerformed(evt);
+                txtRmodule4ActionPerformed(evt);
             }
         });
 
-        jTextField35.addActionListener(new java.awt.event.ActionListener() {
+        txtRmodule6.setEditable(false);
+        txtRmodule6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField35ActionPerformed(evt);
+                txtRmodule6ActionPerformed(evt);
             }
         });
 
-        jTextField36.addActionListener(new java.awt.event.ActionListener() {
+        txtRmodule5.setEditable(false);
+        txtRmodule5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField36ActionPerformed(evt);
+                txtRmodule5ActionPerformed(evt);
             }
         });
 
-        jTextField37.addActionListener(new java.awt.event.ActionListener() {
+        txtRmodule9.setEditable(false);
+        txtRmodule9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField37ActionPerformed(evt);
+                txtRmodule9ActionPerformed(evt);
             }
         });
 
-        jTextField38.addActionListener(new java.awt.event.ActionListener() {
+        txtRmodule7.setEditable(false);
+        txtRmodule7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField38ActionPerformed(evt);
+                txtRmodule7ActionPerformed(evt);
             }
         });
 
-        jTextField39.addActionListener(new java.awt.event.ActionListener() {
+        txtRmodule8.setEditable(false);
+        txtRmodule8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField39ActionPerformed(evt);
+                txtRmodule8ActionPerformed(evt);
             }
         });
 
-        jTextField40.addActionListener(new java.awt.event.ActionListener() {
+        txtRmodule10.setEditable(false);
+        txtRmodule10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField40ActionPerformed(evt);
+                txtRmodule10ActionPerformed(evt);
             }
         });
 
-        jTextField41.addActionListener(new java.awt.event.ActionListener() {
+        txtRmodule11.setEditable(false);
+        txtRmodule11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField41ActionPerformed(evt);
+                txtRmodule11ActionPerformed(evt);
             }
         });
 
-        jTextField42.addActionListener(new java.awt.event.ActionListener() {
+        txtMark1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField42ActionPerformed(evt);
+                txtMark1ActionPerformed(evt);
             }
         });
 
-        jTextField43.addActionListener(new java.awt.event.ActionListener() {
+        txtMark2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField43ActionPerformed(evt);
+                txtMark2ActionPerformed(evt);
             }
         });
 
-        jTextField44.addActionListener(new java.awt.event.ActionListener() {
+        txtMark4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField44ActionPerformed(evt);
+                txtMark4ActionPerformed(evt);
             }
         });
 
-        jTextField46.addActionListener(new java.awt.event.ActionListener() {
+        txtMark3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField46ActionPerformed(evt);
+                txtMark3ActionPerformed(evt);
             }
         });
 
-        jTextField47.addActionListener(new java.awt.event.ActionListener() {
+        txtMark5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField47ActionPerformed(evt);
+                txtMark5ActionPerformed(evt);
             }
         });
 
-        jTextField48.addActionListener(new java.awt.event.ActionListener() {
+        txtMark6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField48ActionPerformed(evt);
+                txtMark6ActionPerformed(evt);
             }
         });
 
-        jTextField49.addActionListener(new java.awt.event.ActionListener() {
+        txtMark7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField49ActionPerformed(evt);
+                txtMark7ActionPerformed(evt);
             }
         });
 
-        jTextField50.addActionListener(new java.awt.event.ActionListener() {
+        txtMark8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField50ActionPerformed(evt);
+                txtMark8ActionPerformed(evt);
             }
         });
 
-        jTextField51.addActionListener(new java.awt.event.ActionListener() {
+        txtMark11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField51ActionPerformed(evt);
+                txtMark11ActionPerformed(evt);
             }
         });
 
-        jTextField52.addActionListener(new java.awt.event.ActionListener() {
+        txtMark9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField52ActionPerformed(evt);
+                txtMark9ActionPerformed(evt);
             }
         });
 
-        jTextField53.addActionListener(new java.awt.event.ActionListener() {
+        txtMark10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField53ActionPerformed(evt);
+                txtMark10ActionPerformed(evt);
             }
         });
 
@@ -2252,69 +2430,69 @@ public class Home extends javax.swing.JFrame {
                                             .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField28)
-                                            .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txtStdID)
+                                            .addComponent(txtRID, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel22Layout.createSequentialGroup()
                                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField38, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                                            .addComponent(jTextField39)))
+                                            .addComponent(txtRmodule7, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                                            .addComponent(txtRmodule8)))
                                     .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
                                             .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField35))
+                                            .addComponent(txtRmodule6))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
                                             .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField36))
+                                            .addComponent(txtRmodule5))
                                         .addGroup(jPanel22Layout.createSequentialGroup()
                                             .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jTextField34)
-                                                .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(txtRmodule4)
+                                                .addComponent(txtRmodule3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
                                             .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField40))
+                                            .addComponent(txtRmodule10))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
                                             .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txtRmodule9, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel22Layout.createSequentialGroup()
                                         .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField41, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtRmodule11, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField46, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField44, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField47, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField48, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField49, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField51, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField52, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField53, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtMark3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField30)
-                                    .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtRmodule2)
+                                    .addComponent(txtRmodule1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField42, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtMark1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 34, Short.MAX_VALUE))
         );
@@ -2329,9 +2507,9 @@ public class Home extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel40))
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtStdID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel22Layout.createSequentialGroup()
@@ -2342,12 +2520,12 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jLabel35))
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtRmodule1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField43, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtRmodule2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel22Layout.createSequentialGroup()
@@ -2356,51 +2534,51 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jLabel53))
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtRmodule3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtRmodule4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMark4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel37)
-                            .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRmodule5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMark5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel38)
-                            .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField48, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRmodule6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMark6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel58)
-                            .addComponent(jTextField49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMark7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel57)
-                            .addComponent(jTextField39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField50, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtRmodule8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMark8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRmodule7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)))
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel56)
-                            .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jTextField52, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRmodule9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtMark9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel55)
-                    .addComponent(jTextField40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField53, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRmodule10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMark10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel54)
-                    .addComponent(jTextField41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField51, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRmodule11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMark11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2464,7 +2642,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jtblResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -2480,8 +2658,8 @@ public class Home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable4.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jScrollPane4.setViewportView(jTable4);
+        jtblResult.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jScrollPane4.setViewportView(jtblResult);
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
@@ -3187,100 +3365,185 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbCmodule11ActionPerformed
 
-    private void jTextField32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField32ActionPerformed
+    private void txtRyearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRyearActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField32ActionPerformed
+    }//GEN-LAST:event_txtRyearActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void cmbRprogrammeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRprogrammeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_cmbRprogrammeActionPerformed
 
-    private void jTextField28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField28ActionPerformed
+    private void txtStdIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStdIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField28ActionPerformed
+    }//GEN-LAST:event_txtStdIDActionPerformed
 
-    private void jTextField30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField30ActionPerformed
+    private void txtRmodule2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRmodule2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField30ActionPerformed
+    }//GEN-LAST:event_txtRmodule2ActionPerformed
 
-    private void jTextField34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField34ActionPerformed
+    private void txtRmodule4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRmodule4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField34ActionPerformed
+    }//GEN-LAST:event_txtRmodule4ActionPerformed
 
-    private void jTextField35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField35ActionPerformed
+    private void txtRmodule6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRmodule6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField35ActionPerformed
+    }//GEN-LAST:event_txtRmodule6ActionPerformed
 
-    private void jTextField36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField36ActionPerformed
+    private void txtRmodule5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRmodule5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField36ActionPerformed
+    }//GEN-LAST:event_txtRmodule5ActionPerformed
 
-    private void jTextField37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField37ActionPerformed
+    private void txtRmodule9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRmodule9ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField37ActionPerformed
+    }//GEN-LAST:event_txtRmodule9ActionPerformed
 
-    private void jTextField38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField38ActionPerformed
+    private void txtRmodule7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRmodule7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField38ActionPerformed
+    }//GEN-LAST:event_txtRmodule7ActionPerformed
 
-    private void jTextField39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField39ActionPerformed
+    private void txtRmodule8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRmodule8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField39ActionPerformed
+    }//GEN-LAST:event_txtRmodule8ActionPerformed
 
-    private void jTextField40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField40ActionPerformed
+    private void txtRmodule10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRmodule10ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField40ActionPerformed
+    }//GEN-LAST:event_txtRmodule10ActionPerformed
 
-    private void jTextField41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField41ActionPerformed
+    private void txtRmodule11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRmodule11ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField41ActionPerformed
+    }//GEN-LAST:event_txtRmodule11ActionPerformed
 
-    private void jTextField42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField42ActionPerformed
+    private void txtMark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField42ActionPerformed
+    }//GEN-LAST:event_txtMark1ActionPerformed
 
-    private void jTextField43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField43ActionPerformed
+    private void txtMark2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField43ActionPerformed
+    }//GEN-LAST:event_txtMark2ActionPerformed
 
-    private void jTextField44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField44ActionPerformed
+    private void txtMark4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField44ActionPerformed
+    }//GEN-LAST:event_txtMark4ActionPerformed
 
-    private void jTextField46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField46ActionPerformed
+    private void txtMark3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField46ActionPerformed
+    }//GEN-LAST:event_txtMark3ActionPerformed
 
-    private void jTextField47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField47ActionPerformed
+    private void txtMark5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField47ActionPerformed
+    }//GEN-LAST:event_txtMark5ActionPerformed
 
-    private void jTextField48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField48ActionPerformed
+    private void txtMark6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField48ActionPerformed
+    }//GEN-LAST:event_txtMark6ActionPerformed
 
-    private void jTextField49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField49ActionPerformed
+    private void txtMark7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField49ActionPerformed
+    }//GEN-LAST:event_txtMark7ActionPerformed
 
-    private void jTextField50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField50ActionPerformed
+    private void txtMark8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField50ActionPerformed
+    }//GEN-LAST:event_txtMark8ActionPerformed
 
-    private void jTextField51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField51ActionPerformed
+    private void txtMark11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark11ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField51ActionPerformed
+    }//GEN-LAST:event_txtMark11ActionPerformed
 
-    private void jTextField52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField52ActionPerformed
+    private void txtMark9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark9ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField52ActionPerformed
+    }//GEN-LAST:event_txtMark9ActionPerformed
 
-    private void jTextField53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField53ActionPerformed
+    private void txtMark10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMark10ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField53ActionPerformed
+    }//GEN-LAST:event_txtMark10ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
+        if(isEmptyResult()){
+            
+            int year = Integer.parseInt(txtRyear.getText());
+            String programme = cmbRprogramme.getSelectedItem().toString();
+            String resultID = txtRID.getText();
+            String stdID = txtStdID.getText();
+            String module1 = txtRmodule1.getText(); 
+            Double marks1 = Double.parseDouble(txtMark1.getText());
+            String module2 = txtRmodule2.getText(); 
+            Double marks2 = Double.parseDouble(txtMark2.getText());
+            String module3 = txtRmodule3.getText(); 
+            Double marks3 = Double.parseDouble(txtMark3.getText());
+            String module4 = txtRmodule4.getText(); 
+            Double marks4 = Double.parseDouble(txtMark4.getText());
+            String module5 = txtRmodule5.getText(); 
+            Double marks5 = Double.parseDouble(txtMark5.getText());
+            String module6 = txtRmodule6.getText(); 
+            Double marks6 = Double.parseDouble(txtMark6.getText());
+            String module7 = txtRmodule7.getText(); 
+            Double marks7 = Double.parseDouble(txtMark7.getText());
+            String module8 = txtRmodule8.getText(); 
+            Double marks8 = Double.parseDouble(txtMark8.getText());
+            String module9 = txtRmodule9.getText(); 
+            Double marks9 = Double.parseDouble(txtMark9.getText());
+            String module10 = txtRmodule10.getText(); 
+            Double marks10 = Double.parseDouble(txtMark10.getText());
+            String module11 = txtRmodule11.getText(); 
+            Double marks11 = Double.parseDouble(txtMark11.getText());
+
+
+            //Add data to Result table
+            try {
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "INSERT INTO result values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1,resultID);
+                ps.setString(2, stdID);
+                ps.setInt(3, year);
+                ps.setString(4, programme);
+                ps.setString(5, module1);
+                ps.setDouble(6, marks1);
+                ps.setString(7, module2); 
+                ps.setDouble(8, marks2);
+                ps.setString(9, module3); 
+                ps.setDouble(10, marks3);
+                ps.setString(11, module4); 
+                ps.setDouble(12, marks4);
+                ps.setString(13, module5); 
+                ps.setDouble(14, marks5);
+                ps.setString(15, module6); 
+                ps.setDouble(16, marks6);
+                ps.setString(17, module7); 
+                ps.setDouble(18, marks7);
+                ps.setString(19, module8); 
+                ps.setDouble(20, marks8);
+                ps.setString(21, module9); 
+                ps.setDouble(22, marks9);
+                ps.setString(23, module10); 
+                ps.setDouble(24, marks10);
+                ps.setString(25, module11); 
+                ps.setDouble(26, marks11);
+
+                
+                
+                
+                
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "new result added sucesfully");
+            jtblResult.setModel(new DefaultTableModel(null, new Object[] {"Result ID","Student ID","Year","Programme","Module 1","Result 1","Module 2","Result 2","Module 3","Result 3","Module 4","Result 4","Module 5","Result 5","Module 6","Result 6","Module 7","Result 7","Module 8","Result 8","Module 9","Result 9","Module 10","Result 10","Module 11","Result 11"}));
+                    getResultValue(jtblResult);
+                    clearResult();
+                
+                }
+                
+                
+            } catch (SQLException s) {
+                JOptionPane.showMessageDialog(null, s);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+            
+            
+            
+            
+        
+        }
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jTextField20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField20ActionPerformed
@@ -3869,6 +4132,47 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton19ActionPerformed
 
+    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+        if(txtRyear.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(this,"Please select a year" );
+        }else{
+            String year = txtRyear.getText();
+            String programme = cmbRprogramme.getSelectedItem().toString();
+            String resultID = txtRID.getText();
+            String studentID = txtStdID.getText();
+            
+            
+            try {
+                
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "SELECT * FROM course WHERE year=? AND programme=?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, year);
+                ps.setString(2, programme);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    txtRmodule1.setText(rs.getString(4));
+                    txtRmodule2.setText(rs.getString(5));
+                    txtRmodule3.setText(rs.getString(6));
+                    txtRmodule4.setText(rs.getString(7));
+                    txtRmodule5.setText(rs.getString(8));
+                    txtRmodule6.setText(rs.getString(9));
+                    txtRmodule7.setText(rs.getString(10));
+                    txtRmodule8.setText(rs.getString(11));
+                    txtRmodule9.setText(rs.getString(12));
+                    txtRmodule10.setText(rs.getString(12));
+                    txtRmodule11.setText(rs.getString(14));
+                    
+                }
+                
+            }catch (SQLException s){
+                JOptionPane.showMessageDialog(null, s);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }//GEN-LAST:event_jButton29ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3923,6 +4227,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbLmodule;
     private javax.swing.JComboBox<String> cmbLtitle;
     private javax.swing.JComboBox<String> cmbProgramme;
+    private javax.swing.JComboBox<String> cmbRprogramme;
     private javax.swing.JComboBox<String> cmbTitle;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -3962,7 +4267,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox22;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -4070,37 +4374,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField30;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField33;
-    private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField jTextField36;
-    private javax.swing.JTextField jTextField37;
-    private javax.swing.JTextField jTextField38;
-    private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField40;
-    private javax.swing.JTextField jTextField41;
-    private javax.swing.JTextField jTextField42;
-    private javax.swing.JTextField jTextField43;
-    private javax.swing.JTextField jTextField44;
-    private javax.swing.JTextField jTextField46;
-    private javax.swing.JTextField jTextField47;
-    private javax.swing.JTextField jTextField48;
-    private javax.swing.JTextField jTextField49;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField50;
-    private javax.swing.JTextField jTextField51;
-    private javax.swing.JTextField jTextField52;
-    private javax.swing.JTextField jTextField53;
     private javax.swing.JTextField jTextField54;
     private javax.swing.JTextField jTextField55;
     private javax.swing.JTextField jTextField56;
@@ -4111,6 +4389,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField62;
     private javax.swing.JTable jtblCourse;
     private javax.swing.JTable jtblLecturer;
+    private javax.swing.JTable jtblResult;
     private javax.swing.JTable jtblStudent;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAge;
@@ -4129,9 +4408,34 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField txtLname;
     private javax.swing.JTextField txtLqualification;
     private javax.swing.JTextField txtLsearch;
+    private javax.swing.JTextField txtMark1;
+    private javax.swing.JTextField txtMark10;
+    private javax.swing.JTextField txtMark11;
+    private javax.swing.JTextField txtMark2;
+    private javax.swing.JTextField txtMark3;
+    private javax.swing.JTextField txtMark4;
+    private javax.swing.JTextField txtMark5;
+    private javax.swing.JTextField txtMark6;
+    private javax.swing.JTextField txtMark7;
+    private javax.swing.JTextField txtMark8;
+    private javax.swing.JTextField txtMark9;
     private javax.swing.JTextField txtMobile;
     private javax.swing.JTextField txtPname;
+    private javax.swing.JTextField txtRID;
+    private javax.swing.JTextField txtRmodule1;
+    private javax.swing.JTextField txtRmodule10;
+    private javax.swing.JTextField txtRmodule11;
+    private javax.swing.JTextField txtRmodule2;
+    private javax.swing.JTextField txtRmodule3;
+    private javax.swing.JTextField txtRmodule4;
+    private javax.swing.JTextField txtRmodule5;
+    private javax.swing.JTextField txtRmodule6;
+    private javax.swing.JTextField txtRmodule7;
+    private javax.swing.JTextField txtRmodule8;
+    private javax.swing.JTextField txtRmodule9;
+    private javax.swing.JTextField txtRyear;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSid;
+    private javax.swing.JTextField txtStdID;
     // End of variables declaration//GEN-END:variables
 }

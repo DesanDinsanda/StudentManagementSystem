@@ -2883,8 +2883,8 @@
                                                       </Group>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="jTextField28" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="jTextField27" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                                                          <Component id="txtStdID" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="txtRID" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                                   <Group type="102" attributes="0">
@@ -2894,20 +2894,20 @@
                                                       </Group>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="jTextField38" pref="249" max="32767" attributes="0"/>
-                                                          <Component id="jTextField39" max="32767" attributes="0"/>
+                                                          <Component id="txtRmodule7" pref="249" max="32767" attributes="0"/>
+                                                          <Component id="txtRmodule8" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="jLabel38" min="-2" pref="112" max="-2" attributes="0"/>
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="jTextField35" max="32767" attributes="0"/>
+                                                          <Component id="txtRmodule6" max="32767" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="jLabel37" min="-2" pref="112" max="-2" attributes="0"/>
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="jTextField36" max="32767" attributes="0"/>
+                                                          <Component id="txtRmodule5" max="32767" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" attributes="0">
                                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2916,8 +2916,8 @@
                                                           </Group>
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                              <Component id="jTextField34" alignment="0" max="32767" attributes="0"/>
-                                                              <Component id="jTextField33" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                                                              <Component id="txtRmodule4" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="txtRmodule3" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                   </Group>
@@ -2925,31 +2925,31 @@
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="jLabel55" min="-2" pref="112" max="-2" attributes="0"/>
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="jTextField40" max="32767" attributes="0"/>
+                                                          <Component id="txtRmodule10" max="32767" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="jLabel56" min="-2" pref="112" max="-2" attributes="0"/>
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="jTextField37" min="-2" pref="249" max="-2" attributes="0"/>
+                                                          <Component id="txtRmodule9" min="-2" pref="249" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel54" min="-2" pref="112" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="jTextField41" min="-2" pref="256" max="-2" attributes="0"/>
+                                                      <Component id="txtRmodule11" min="-2" pref="256" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jTextField46" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                                                  <Component id="jTextField44" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                                                  <Component id="jTextField47" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                                                  <Component id="jTextField48" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                                                  <Component id="jTextField50" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                                                  <Component id="jTextField49" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                                                  <Component id="jTextField51" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                                                  <Component id="jTextField52" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                                                  <Component id="jTextField53" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark3" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark4" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark5" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark6" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark8" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark7" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark11" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark9" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark10" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" attributes="0">
@@ -2959,13 +2959,13 @@
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jTextField30" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jTextField29" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                                                  <Component id="txtRmodule2" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="txtRmodule1" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jTextField42" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                                                  <Component id="jTextField43" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark1" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="txtMark2" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -2988,9 +2988,9 @@
                                       <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTextField27" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtRID" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextField28" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtStdID" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -3004,13 +3004,13 @@
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jTextField29" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jTextField42" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtRmodule1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtMark1" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jTextField30" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jTextField43" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtRmodule2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtMark2" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -3023,42 +3023,42 @@
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jTextField33" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jTextField46" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtRmodule3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtMark3" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jTextField34" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jTextField44" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtRmodule4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtMark4" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField36" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField47" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtRmodule5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtMark5" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField35" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField48" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtRmodule6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtMark6" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField49" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtMark7" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel57" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField39" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField50" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtRmodule8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtMark8" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jTextField38" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtRmodule7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -3067,22 +3067,22 @@
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel56" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField37" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                          <Component id="txtRmodule9" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="jTextField52" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMark9" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField40" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField53" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtRmodule10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMark10" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel54" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField41" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField51" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtRmodule11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMark11" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -3113,12 +3113,12 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel28" min="-2" pref="112" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField32" min="-2" pref="77" max="-2" attributes="0"/>
+                                          <Component id="txtRyear" min="-2" pref="77" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel33" min="-2" pref="112" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jComboBox3" max="32767" attributes="0"/>
+                                          <Component id="cmbRprogramme" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
@@ -3135,12 +3135,12 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField32" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtRyear" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cmbRprogramme" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -3160,9 +3160,9 @@
                             <Property name="text" type="java.lang.String" value="Year"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField32">
+                        <Component class="javax.swing.JTextField" name="txtRyear">
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField32ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRyearActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel33">
@@ -3186,8 +3186,11 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Search"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton29ActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox3">
+                        <Component class="javax.swing.JComboBox" name="cmbRprogramme">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="3">
@@ -3198,7 +3201,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox3ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbRprogrammeActionPerformed"/>
                           </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -3222,11 +3225,11 @@
                         <Property name="text" type="java.lang.String" value="Student ID"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField27">
+                    <Component class="javax.swing.JTextField" name="txtRID">
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField28">
+                    <Component class="javax.swing.JTextField" name="txtStdID">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField28ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtStdIDActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel53">
@@ -3317,108 +3320,141 @@
                         <Property name="text" type="java.lang.String" value="Module 7"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField29">
+                    <Component class="javax.swing.JTextField" name="txtRmodule1">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField30">
+                    <Component class="javax.swing.JTextField" name="txtRmodule2">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField30ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRmodule2ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField33">
+                    <Component class="javax.swing.JTextField" name="txtRmodule3">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField34">
+                    <Component class="javax.swing.JTextField" name="txtRmodule4">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField34ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRmodule4ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField35">
+                    <Component class="javax.swing.JTextField" name="txtRmodule6">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField35ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRmodule6ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField36">
+                    <Component class="javax.swing.JTextField" name="txtRmodule5">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField36ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRmodule5ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField37">
+                    <Component class="javax.swing.JTextField" name="txtRmodule9">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField37ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRmodule9ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField38">
+                    <Component class="javax.swing.JTextField" name="txtRmodule7">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField38ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRmodule7ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField39">
+                    <Component class="javax.swing.JTextField" name="txtRmodule8">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField39ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRmodule8ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField40">
+                    <Component class="javax.swing.JTextField" name="txtRmodule10">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField40ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRmodule10ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField41">
+                    <Component class="javax.swing.JTextField" name="txtRmodule11">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField41ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRmodule11ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField42">
+                    <Component class="javax.swing.JTextField" name="txtMark1">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField42ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark1ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField43">
+                    <Component class="javax.swing.JTextField" name="txtMark2">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField43ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark2ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField44">
+                    <Component class="javax.swing.JTextField" name="txtMark4">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField44ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark4ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField46">
+                    <Component class="javax.swing.JTextField" name="txtMark3">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField46ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark3ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField47">
+                    <Component class="javax.swing.JTextField" name="txtMark5">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField47ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark5ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField48">
+                    <Component class="javax.swing.JTextField" name="txtMark6">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField48ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark6ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField49">
+                    <Component class="javax.swing.JTextField" name="txtMark7">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField49ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark7ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField50">
+                    <Component class="javax.swing.JTextField" name="txtMark8">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField50ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark8ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField51">
+                    <Component class="javax.swing.JTextField" name="txtMark11">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField51ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark11ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField52">
+                    <Component class="javax.swing.JTextField" name="txtMark9">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField52ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark9ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField53">
+                    <Component class="javax.swing.JTextField" name="txtMark10">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField53ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMark10ActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -3579,7 +3615,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable4">
+                            <Component class="javax.swing.JTable" name="jtblResult">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="26" rowCount="0">
