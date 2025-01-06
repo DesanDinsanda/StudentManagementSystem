@@ -543,7 +543,7 @@ public class Home extends javax.swing.JFrame {
     }
     
     public void getResultValues(JTable table,String searchValue){
-        String sql = "SELECT * FROM result WHERE concat(resultID,studentID,year,program,module1,result1,module2,result2,module3,result3,module4,result4,module5,result5,module6,result6,module7,result7,module8,result8,module9,result9,module10,result10,module11,result11) LIKE ? ";
+        String sql = "SELECT * FROM result WHERE concat(resultID,studentID,year,programme,module1,result1,module2,result2,module3,result3,module4,result4,module5,result5,module6,result6,module7,result7,module8,result8,module9,result9,module10,result10,module11,result11) LIKE ? ";
         try {
             Connection con = SingletonConnection.getInstance().getConnection();
     
@@ -581,6 +581,7 @@ public class Home extends javax.swing.JFrame {
             row[23] = rs.getDouble(24);
             row[24] = rs.getString(25);
             row[25] = rs.getDouble(26);
+            model.addRow(row);
             
             }
         } catch (SQLException e) {
@@ -772,7 +773,7 @@ public class Home extends javax.swing.JFrame {
         jPanel23 = new javax.swing.JPanel();
         jPanel24 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtRsearch = new javax.swing.JTextField();
         jButton22 = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
         jPanel25 = new javax.swing.JPanel();
@@ -2591,9 +2592,9 @@ public class Home extends javax.swing.JFrame {
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel41.setText("Search result by student ID");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtRsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtRsearchActionPerformed(evt);
             }
         });
 
@@ -2623,7 +2624,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtRsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(142, 142, 142)
                 .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2636,7 +2637,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel41)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton22)
                     .addComponent(jButton23))
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -2659,6 +2660,11 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jtblResult.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jtblResult.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtblResultMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jtblResult);
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
@@ -2689,16 +2695,31 @@ public class Home extends javax.swing.JFrame {
         jButton25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton25.setForeground(new java.awt.Color(255, 255, 255));
         jButton25.setText("Update");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
 
         jButton26.setBackground(new java.awt.Color(96, 108, 56));
         jButton26.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton26.setForeground(new java.awt.Color(255, 255, 255));
         jButton26.setText("Delete");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
 
         jButton27.setBackground(new java.awt.Color(96, 108, 56));
         jButton27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton27.setForeground(new java.awt.Color(255, 255, 255));
         jButton27.setText("Clear");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
 
         jButton28.setBackground(new java.awt.Color(96, 108, 56));
         jButton28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -3289,16 +3310,23 @@ public class Home extends javax.swing.JFrame {
         txtCsearch.setText(null);
     }//GEN-LAST:event_jButton16ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtRsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRsearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtRsearchActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
+        if(txtRsearch.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter a value");
+        }else{
+            jtblResult.setModel(new DefaultTableModel(null, new Object[] {"Result ID","Student ID","Year","Programme","Module 1","Result 1","Module 2","Result 2","Module 3","Result 3","Module 4","Result 4","Module 5","Result 5","Module 6","Result 6","Module 7","Result 7","Module 8","Result 8","Module 9","Result 9","Module 10","Result 10","Module 11","Result 11"}));
+            getResultValues(jtblResult,txtRsearch.getText());
+        }
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        // TODO add your handling code here:
+        jtblResult.setModel(new DefaultTableModel(null, new Object[] {"Result ID","Student ID","Year","Programme","Module 1","Result 1","Module 2","Result 2","Module 3","Result 3","Module 4","Result 4","Module 5","Result 5","Module 6","Result 6","Module 7","Result 7","Module 8","Result 8","Module 9","Result 9","Module 10","Result 10","Module 11","Result 11"}));
+        getResultValue(jtblResult);
+        txtCsearch.setText(null);
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void cmbProgrammeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProgrammeActionPerformed
@@ -4173,6 +4201,142 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton29ActionPerformed
 
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        if(isEmptyResult()){
+            String resultID = txtRID.getText();
+            String studentID = txtStdID.getText();
+            int year = Integer.parseInt(txtRyear.getText());
+            String programme = cmbRprogramme.getSelectedItem().toString();
+            String module1 = txtRmodule1.getText();
+            String module2 = txtRmodule2.getText();
+            String module3 = txtRmodule3.getText();
+            String module4 = txtRmodule4.getText();
+            String module5 = txtRmodule5.getText();
+            String module6 = txtRmodule6.getText();
+            String module7 = txtRmodule7.getText();
+            String module8 = txtRmodule8.getText();
+            String module9 = txtRmodule9.getText();
+            String module10 = txtRmodule10.getText();
+            String module11 = txtRmodule11.getText();
+            
+            String mark1 = txtMark1.getText();
+            String mark2 = txtMark2.getText();
+            String mark3 = txtMark3.getText();
+            String mark4 = txtMark4.getText();
+            String mark5 = txtMark5.getText();
+            String mark6 = txtMark6.getText();
+            String mark7 = txtMark7.getText();
+            String mark8 = txtMark8.getText();
+            String mark9 = txtMark9.getText();
+            String mark10 = txtMark10.getText();
+            String mark11 = txtMark11.getText();
+            
+            
+            try {
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "UPDATE result SET  result1=?, result2=?, result3=?, result4=?, result5=?, result6=?, result7=?, result8=?, result9=?, result10=?, result11=?, studentID=?  WHERE resultID=?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                
+                ps.setString(1, mark1);
+                ps.setString(2, mark2);
+                ps.setString(3, mark3);
+                ps.setString(4, mark4);
+                ps.setString(5, mark5);
+                ps.setString(6, mark6);
+                ps.setString(7, mark7);
+                ps.setString(8, mark8);
+                ps.setString(9, mark9);
+                ps.setString(10, mark10);
+                ps.setString(11, mark11);
+                ps.setString(12, studentID);
+                ps.setString(13, resultID);
+                
+                
+                
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "result updated sucesfully");
+                    jtblResult.setModel(new DefaultTableModel(null, new Object[] {"Result ID","Student ID","Year","Programme","Module 1","Result 1","Module 2","Result 2","Module 3","Result 3","Module 4","Result 4","Module 5","Result 5","Module 6","Result 6","Module 7","Result 7","Module 8","Result 8","Module 9","Result 9","Module 10","Result 10","Module 11","Result 11"}));
+                    getResultValue(jtblResult);
+                    clearResult();
+                
+                }
+                
+                
+            } catch (SQLException s) {
+                JOptionPane.showMessageDialog(null, s);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        clearResult();
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jtblResultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblResultMouseClicked
+        model = (DefaultTableModel) jtblResult.getModel();
+        rowIndex = jtblResult.getSelectedRow();
+        
+        txtRID.setText(jtblResult.getValueAt(rowIndex, 0).toString());
+        txtStdID.setText(jtblResult.getValueAt(rowIndex, 1).toString());
+        txtRyear.setText(jtblResult.getValueAt(rowIndex, 2).toString());
+        cmbRprogramme.setSelectedItem(jtblResult.getValueAt(rowIndex, 3).toString());
+        txtRmodule1.setText(jtblResult.getValueAt(rowIndex, 4).toString());
+        txtMark1.setText(jtblResult.getValueAt(rowIndex, 5).toString());
+        txtRmodule2.setText(jtblResult.getValueAt(rowIndex, 6).toString());
+        txtMark2.setText(jtblResult.getValueAt(rowIndex, 7).toString());
+        txtRmodule3.setText(jtblResult.getValueAt(rowIndex, 8).toString());
+        txtMark3.setText(jtblResult.getValueAt(rowIndex, 9).toString());
+        txtRmodule4.setText(jtblResult.getValueAt(rowIndex, 10).toString());
+        txtMark4.setText(jtblResult.getValueAt(rowIndex, 11).toString());
+        txtRmodule5.setText(jtblResult.getValueAt(rowIndex, 12).toString());
+        txtMark5.setText(jtblResult.getValueAt(rowIndex, 13).toString());
+        txtRmodule6.setText(jtblResult.getValueAt(rowIndex, 14).toString());
+        txtMark6.setText(jtblResult.getValueAt(rowIndex, 15).toString());
+        txtRmodule7.setText(jtblResult.getValueAt(rowIndex, 16).toString());
+        txtMark7.setText(jtblResult.getValueAt(rowIndex, 17).toString());
+        txtRmodule8.setText(jtblResult.getValueAt(rowIndex, 18).toString());
+        txtMark8.setText(jtblResult.getValueAt(rowIndex, 19).toString());
+        txtRmodule9.setText(jtblResult.getValueAt(rowIndex, 20).toString());
+        txtMark9.setText(jtblResult.getValueAt(rowIndex, 21).toString());
+        txtRmodule10.setText(jtblResult.getValueAt(rowIndex, 22).toString());
+        txtMark10.setText(jtblResult.getValueAt(rowIndex, 23).toString());
+        txtRmodule11.setText(jtblResult.getValueAt(rowIndex, 24).toString());
+        txtMark11.setText(jtblResult.getValueAt(rowIndex, 25).toString());
+
+        
+    }//GEN-LAST:event_jtblResultMouseClicked
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        String resultID = txtRID.getText();
+        if(resultID.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please select a ID first");
+        }else{
+        int confirm = JOptionPane.showConfirmDialog(null, "Do you want to delete this result", "Conifrm course deletion", JOptionPane.OK_CANCEL_OPTION,0);
+        if(confirm == JOptionPane.OK_OPTION){
+            try {
+                
+                Connection con = SingletonConnection.getInstance().getConnection();
+                String sql = "DELETE FROM result WHERE resultID = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, resultID);
+                if(ps.executeUpdate()>0){
+                    JOptionPane.showMessageDialog(null, "result deleted sucesfully");
+                    jtblResult.setModel(new DefaultTableModel(null, new Object[] {"Result ID","Student ID","Year","Programme","Module 1","Result 1","Module 2","Result 2","Module 3","Result 3","Module 4","Result 4","Module 5","Result 5","Module 6","Result 6","Module 7","Result 7","Module 8","Result 8","Module 9","Result 9","Module 10","Result 10","Module 11","Result 11"}));
+                    getResultValue(jtblResult);
+                    clearResult();
+                
+                }
+            }catch (SQLException s){
+                JOptionPane.showMessageDialog(null, s);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        }
+    }//GEN-LAST:event_jButton26ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4377,7 +4541,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField54;
     private javax.swing.JTextField jTextField55;
@@ -4433,6 +4596,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField txtRmodule7;
     private javax.swing.JTextField txtRmodule8;
     private javax.swing.JTextField txtRmodule9;
+    private javax.swing.JTextField txtRsearch;
     private javax.swing.JTextField txtRyear;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSid;
