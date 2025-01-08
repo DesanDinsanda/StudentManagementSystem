@@ -4365,7 +4365,7 @@ public class Home extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:4306/sms","root","");
-            String reportPath = "C:\\Users\\DELL\\JaspersoftWorkspace\\MyReports\\studentMarks.jrxml";
+            String reportPath = getClass().getResource("/reports/studentMarks.jrxml").getPath();
             JasperReport jr = JasperCompileManager.compileReport(reportPath);
             JasperPrint jp = JasperFillManager.fillReport(jr,null,con);
             JasperViewer.viewReport(jp);
