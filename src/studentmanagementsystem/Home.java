@@ -12,6 +12,11 @@ import java.text.MessageFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -2737,6 +2742,11 @@ public class Home extends javax.swing.JFrame {
         button1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setLabel("Print");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -4350,6 +4360,23 @@ public class Home extends javax.swing.JFrame {
         }
         }
     }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:4306/sms","root","");
+            String reportPath = "C:\\Users\\DELL\\JaspersoftWorkspace\\MyReports\\studentMarks.jrxml";
+            JasperReport jr = JasperCompileManager.compileReport(reportPath);
+            JasperPrint jp = JasperFillManager.fillReport(jr,null,con);
+            JasperViewer.viewReport(jp);
+            con.close();
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }//GEN-LAST:event_button1ActionPerformed
 
     /**
      * @param args the command line arguments
