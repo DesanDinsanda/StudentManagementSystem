@@ -800,7 +800,7 @@ public class Home extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(96, 108, 56));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 40)); // NOI18N
-        jLabel1.setText("Student Mangement System");
+        jLabel1.setText("Learning Mangement System");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1901,7 +1901,7 @@ public class Home extends javax.swing.JFrame {
         jPanel18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 153, 102), 4, true));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setText("Search Year");
+        jLabel10.setText("Search Course");
 
         txtCsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2546,7 +2546,7 @@ public class Home extends javax.swing.JFrame {
         jPanel24.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 153, 102), 4, true));
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel41.setText("Search result by student ID");
+        jLabel41.setText("Search result ");
 
         txtRsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
