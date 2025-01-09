@@ -6,6 +6,7 @@ package studentmanagementsystem;
 
 import com.mysql.cj.jdbc.PreparedStatementWrapper;
 import java.awt.Color;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.*;
 import java.text.MessageFormat;
@@ -3888,10 +3889,11 @@ public class Home extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:4306/sms","root","");
-            String reportPath = "studentMarks.jrxml";
-            JasperReport jr = JasperCompileManager.compileReport(reportPath);
-            JasperPrint jp = JasperFillManager.fillReport(jr,null,con);
+            InputStream reportStream = getClass().getResourceAsStream("/studentMarks.jrxml");
+            JasperReport jr = JasperCompileManager.compileReport(reportStream);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
             JasperViewer.viewReport(jp);
+
             con.close();
             
             
