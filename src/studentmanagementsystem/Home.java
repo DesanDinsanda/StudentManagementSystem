@@ -3913,7 +3913,7 @@ public class Home extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:4306/sms","root","");
-            String reportPath = getClass().getResource("/reports/studentMarks.jrxml").getPath();
+            String reportPath = "studentMarks.jrxml";
             JasperReport jr = JasperCompileManager.compileReport(reportPath);
             JasperPrint jp = JasperFillManager.fillReport(jr,null,con);
             JasperViewer.viewReport(jp);
@@ -3923,6 +3923,7 @@ public class Home extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+
 
     }//GEN-LAST:event_button1ActionPerformed
 
