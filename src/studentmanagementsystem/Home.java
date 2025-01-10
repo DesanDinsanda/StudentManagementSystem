@@ -3887,8 +3887,7 @@ public class Home extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:4306/sms","root","");
+            Connection con = SingletonConnection.getInstance().getConnection();
             InputStream reportStream = getClass().getResourceAsStream("/studentMarks.jrxml");
             JasperReport jr = JasperCompileManager.compileReport(reportStream);
             JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
